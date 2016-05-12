@@ -28,24 +28,26 @@ Painel administrativo. Simples e rápido.
 ```
 .
 ├── build
+│   ├── js
+│   │   └── gainTime.js
 │   └── scss
 │       ├── base
 │       │   ├── _base.scss
 │       │   ├── _mixins.scss
 │       │   └── _variables.scss
-│       ├── GainTime.scss
 │       ├── layouts
 │       │   ├── _footer.scss
 │       │   ├── _header.scss
 │       │   └── _sections.scss
-│       └── modules
-│           ├── _buttons.scss
-│           ├── _colors.scss
-│           ├── _components.scss
-│           ├── _forms.scss
-│           └── _typography.scss
+│       ├── modules
+│       │   ├── _buttons.scss
+│       │   ├── _colors.scss
+│       │   ├── _components.scss
+│       │   ├── _forms.scss
+│       │   └── _typography.scss
+│       └── GainTime.scss
 ├── vendors
-│    └── jquery-2.1.4.min.js
+│   └── jquery-2.1.4.min.js
 └── README.md
 ```
 
