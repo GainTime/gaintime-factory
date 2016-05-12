@@ -25,17 +25,29 @@ Painel administrativo. Simples e rápido.
     - Pronto :smile:
 
 ### Estrutura
-
 ```
-GainTime/
-|-- dist/
-|   |-- css/
-|   |-- img/
-|   |-- js/
-|
-|-- vendors
+.
+├── build
+│   └── scss
+│       ├── base
+│       │   ├── _base.scss
+│       │   ├── _mixins.scss
+│       │   └── _variables.scss
+│       ├── GainTime.scss
+│       ├── layouts
+│       │   ├── _footer.scss
+│       │   ├── _header.scss
+│       │   └── _sections.scss
+│       └── modules
+│           ├── _buttons.scss
+│           ├── _colors.scss
+│           ├── _components.scss
+│           ├── _forms.scss
+│           └── _typography.scss
+├── vendors
+│    └── jquery-2.1.4.min.js
+└── README.md
 ```
-
 
 ### Uso
 
