@@ -16,8 +16,11 @@ $(document).on('click', function(e) {
 
 //Ask Delete
 
-function askDelete(name, entity) {
-    if(confirm("Deseja deletar "+ entity +" \""+ name +"\" do sistema?")){
+function askDelete(name, entity, url = '') {
+    if(confirm("Deseja deletar "+ entity +" \""+ name +"\" do sistema?")) {
+        if (url != '') {
+            window.location.href = url;
+        }
         return true;
     }
     return false;
@@ -29,7 +32,7 @@ setTimeout(function(){
     $('.msg').fadeOut();
 }, 3000);
 
-// Inputs and Labels 
+// Inputs and Labels
 
 $('document').ready(function() {
     $('input').each(function() {
