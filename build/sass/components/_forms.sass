@@ -9,9 +9,26 @@
     margin: 5px 0
     padding: 8px 10px
 
-  input[type=text], input[type=password], input[type=email], select
+  input[type=checkbox], input[type=radio]
+    margin: 0px
+    display: inline-block
+    vertical-align: middle
+
+  input[type=text], input[type=password], input[type=email], select, textarea
     @extend %field
     width: 100%
 
     &:focus
       border-color: $default
+
+  textarea
+    resize: vertical
+
+  [disabled]
+    background-color: #EEE!important
+    cursor: not-allowed
+
+  .vertical-list
+    label
+      display: block
+      margin: 5px 0
