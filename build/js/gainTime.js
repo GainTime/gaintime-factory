@@ -7,6 +7,7 @@ deletes.forEach(function(x) {deleter(x)});
 inputs.forEach(function(x) {
   formater(x);
   validates(x);
+  switchValidations(x);
 });
 
 function close(x) {
@@ -43,24 +44,28 @@ function formatCpf(x, ev) {
 
 function validates(x) {
   x.addEventListener("blur", function(e) {
-    switch (x.dataset.validate) {
-      case 'text':
-        searcher(x, /^[a-zA-ZÃẼĨÕŨãẽĩõũÁÉÍÓÚáéíóúÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöü' ]*$/);
-        break;
-      case 'num':
-        searcher(x, /^[\d]*$/g);
-        break;
-      case 'email':
-        searcher(x, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/)
-        break;
-      case 'cpf':
-        (cpf(x) || x.value == "")? x.style.removeProperty('border'): x.style.border = "1px solid #F00";
-        break;
-      default:
-        searcher(x, x.dataset.validate);
-        break;
-    }
+    switchValidations(x);
   });
+}
+
+function switchValidations(x) {
+  switch (x.dataset.validate) {
+    case 'text':
+      searcher(x, /^[a-zA-ZÃẼĨÕŨãẽĩõũÁÉÍÓÚáéíóúÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöü' ]*$/);
+      break;
+    case 'num':
+      searcher(x, /^[\d]*$/g);
+      break;
+    case 'email':
+      searcher(x, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/)
+      break;
+    case 'cpf':
+      (cpf(x) || x.value == "")? x.style.removeProperty('border'): x.style.border = "1px solid #F00";
+      break;
+    default:
+      searcher(x, x.dataset.validate);
+      break;
+  }
 }
 
 function searcher(x, pattern) {
