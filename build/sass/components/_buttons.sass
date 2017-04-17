@@ -1,0 +1,25 @@
+%btn
+  border: 1px solid
+  border-radius: 3px
+  color: #333
+  cursor: pointer
+  font-family: 'Roboto',Helvetica,Arial,sans-serif
+  text-decoration: none
+
+.btn
+  @extend %btn
+  font-size: 18px
+  margin: 15px 0
+  padding: 6px 20px
+  &:hover
+    background-color: #F3F3F3
+
+.action
+  @extend %btn
+  padding: 5px
+  margin: 0 2.5px
+  text-align: center
+
+@media (max-width: 768px)
+  .action span
+    display: none

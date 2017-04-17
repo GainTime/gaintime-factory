@@ -1,0 +1,79 @@
+.gt-top-menu
+  background-color: $base
+  height: 60px
+  padding: 10px 5%
+  +box-shadow (0px 0px 4px 0px, rgba(50, 50, 50, 0.4))
+
+  & > img, nav, ul, li
+    height: 100%
+
+  nav
+    float: right
+    text-align: center
+    z-index: 6
+
+  ul
+    display: inline-flex
+    float: right
+    list-style: none
+    margin: 0
+    padding: 0
+
+  li
+    cursor: pointer
+    padding: 10px 8px
+    margin: 0 1px
+    border-bottom: 2px solid transparent
+    +transition()
+
+    &:hover, &.active
+      border-color: $default
+
+  #menu-icon, #menu-toggle
+    display: none
+    cursor: pointer
+    height: 100%
+    svg
+      width: 50px
+      height: 100%
+
+=responsive-menu()
+  nav
+    height: auto
+    right: 0
+    max-width: 0px
+    overflow: hidden
+    position: absolute
+    top: 60px
+    +transition()
+
+    &:after
+      clear: both
+      content: ""
+      display: block
+    ul
+      padding: 0
+      display: inline
+      background-color: $base
+
+    li
+      width: 100%
+      display: inline-block
+      &:hover, .active
+        background-color: $default
+        border-color: transparent!important
+        color: #FFF
+    a
+      color: #333
+
+  #menu-icon
+    display: inline !important
+    float: right
+    padding: 0
+
+  #menu-toggle:checked ~ nav
+    max-width: 400px
+
+@media (max-width: 768px)
+  .xs-left
+    +responsive-menu()

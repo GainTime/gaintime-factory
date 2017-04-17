@@ -1,0 +1,57 @@
+.msg, .inform
+  border: 1px solid
+  border-radius: 3px
+  padding: 10px
+  position: relative
+  margin-bottom: 5px
+  *
+    margin: 0
+
+  &.success
+    background-color: #c9dec1
+    color: #333
+    +transition()
+    &:hover
+      background-color: #c9dec1
+
+  &.danger
+    color: #333
+    +transition()
+    background-color: #ebcccc
+    &:hover
+      background-color: #ebcccc
+
+  &.warning
+    color: #333
+    +transition()
+    background-color: #faf2cc
+    &:hover
+      background-color: #faf2cc
+
+  &.info
+    +transition()
+    color: #333
+    background-color: #bcdff1
+    &:hover
+      background-color: #bcdff1
+
+  .close
+    margin: 0
+    padding: 5px
+    border: 0
+    background: none
+    cursor: pointer
+    position: absolute
+    right: 5px
+    top: 0px
+
+    &:hover
+      font-weight: 700
+      color: #000
+
+    &:after
+      content: "×"
+      font-size: 16px
+
+.inform
+  border-left: 15px solid
