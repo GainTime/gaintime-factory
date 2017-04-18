@@ -8,32 +8,16 @@
     margin: 0
 
   &.success
-    background-color: #c9dec1
-    color: #333
-    +transition()
-    &:hover
-      background-color: #c9dec1
+    +noHoverColor(#c9dec1, #333)
 
   &.danger
-    color: #333
-    +transition()
-    background-color: #ebcccc
-    &:hover
-      background-color: #ebcccc
+    +noHoverColor(#ebcccc, #333)
 
   &.warning
-    color: #333
-    +transition()
-    background-color: #faf2cc
-    &:hover
-      background-color: #faf2cc
+    +noHoverColor(#faf2cc, #333)
 
   &.info
-    +transition()
-    color: #333
-    background-color: #bcdff1
-    &:hover
-      background-color: #bcdff1
+    +noHoverColor(#bcdff1, #333)
 
   .close
     margin: 0

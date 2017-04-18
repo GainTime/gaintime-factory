@@ -1,0 +1,58 @@
+%bar
+  border-radius: 3px
+  height: 100%
+
+.bar
+  @extend %bar
+  background-color: #DAD7D7
+  height: 10px
+  margin: 5px 0
+  position: relative
+  vertical-align: middle
+
+  .percentage
+    @extend %bar
+    background-color: $default
+    left: 0
+    position: absolute
+    top: 0
+
+    &.success
+      +noHoverColor(#299209, #333)
+
+    &.danger
+      +noHoverColor(#ed5643, #333)
+
+    &.warning
+      +noHoverColor(#ec971f, #333)
+
+    &.info
+      +noHoverColor(#31b0d5, #333)
+
+  &:hover
+    .tooltip
+      display: block
+
+%tooltip
+  background-color: #000
+  position: absolute
+.tooltip
+  @extend %tooltip
+  display: none
+  border-radius: 5px
+  color: #FFF
+  left: 5px
+  min-width: 150px
+  padding: 5px 10px
+  text-align: center
+  top: 80%
+  z-index: 5
+  +transition()
+  &::after
+    @extend %tooltip
+    width: 8px
+    height: 8px
+    display: block
+    content: ""
+    top: -3px
+    transform: rotate(45deg)

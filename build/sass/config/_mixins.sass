@@ -16,6 +16,12 @@
   &:hover
     background-color: transparentize($bg, 0.3)
 
+=noHoverColor($bg, $color: #FFF)
+  background-color: $bg
+  color: $color
+  &:hover
+    background-color: $bg
+
 =transition($transition: all, $time: 0.2s)
   -webkit-transition: $transition $time
   -moz-transition: $transition $time

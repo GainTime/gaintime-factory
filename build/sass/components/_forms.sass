@@ -1,18 +1,39 @@
-.gt-form
-  max-width: 500px
-  %field
-    background-color: #FFF
-    border: 1px solid #d1d5da
-    border-radius: 3px
-    box-shadow: inset 0 1px 2px rgba(27,31,35,0.075)
+%field
+  background-color: #FFF
+  border: 1px solid #d1d5da
+  border-radius: 3px
+  box-shadow: inset 0 1px 2px rgba(27,31,35,0.075)
+  display: block
+  margin: 5px 0
+  padding: 8px 10px
+
+%checkers
+  margin: 0px
+  display: inline-block
+  vertical-align: middle
+
+[disabled]
+  background-color: #EEE!important
+  cursor: not-allowed
+
+.field
+  @extend %field
+  &:focus
+    border-color: $default
+
+  &[type=checkbox], &[type=radio]
+    @extend %checkers
+
+.vertical-list
+  & > *
     display: block
     margin: 5px 0
-    padding: 8px 10px
+    
+.gt-form
+  max-width: 500px
 
   input[type=checkbox], input[type=radio]
-    margin: 0px
-    display: inline-block
-    vertical-align: middle
+    @extend %checkers
 
   input[type=text], input[type=password], input[type=email], select, textarea
     @extend %field
@@ -23,12 +44,3 @@
 
   textarea
     resize: vertical
-
-  [disabled]
-    background-color: #EEE!important
-    cursor: not-allowed
-
-  .vertical-list
-    label
-      display: block
-      margin: 5px 0

@@ -1,7 +1,9 @@
 closes = [] .slice.call(document.getElementsByClassName('close'));
 deletes = [] .slice.call(document.getElementsByClassName('deleter'));
+bars = [] .slice.call(document.getElementsByClassName('bar'));
 inputs = [] .slice.call(document.getElementsByTagName('input'));
 
+bars.forEach(function(x) {bar(x)});
 closes.forEach(function(x) {close(x)});
 deletes.forEach(function(x) {deleter(x)});
 inputs.forEach(function(x) {
@@ -9,6 +11,22 @@ inputs.forEach(function(x) {
   validates(x);
   switchValidations(x);
 });
+
+function bar(x) {
+  var progress = document.createElement("div");
+  progress.setAttribute("class", "percentage " + x.dataset.color);
+  progress.setAttribute("style", "width: " + x.dataset.percentage)
+
+  x.appendChild(progress);
+
+  if (x.dataset.tooltip) {
+    var text = document.createTextNode(x.dataset.tooltip)
+    var tooltip = document.createElement("div");
+    tooltip.appendChild(text);
+    tooltip.setAttribute("class", "tooltip");
+    x.appendChild(tooltip);
+  }
+}
 
 function close(x) {
   x.addEventListener("click", function() {
@@ -63,7 +81,7 @@ function switchValidations(x) {
       (cpf(x) || x.value == "")? x.style.removeProperty('border'): x.style.border = "1px solid #F00";
       break;
     default:
-      searcher(x, x.dataset.validate);
+      searcher(x, new RegExp(x.dataset.validate));
       break;
   }
 }
