@@ -6,3 +6,25 @@
 
 .hidden
   display: none!important
+
+.center
+  margin: 0 auto
+
+.text
+  &-center
+    text-align: center
+  &-left
+    text-align: left
+  &-right
+    text-align: right
+  &-justify
+    text-align: justify
+
+.brand
+  max-height: 100px
+
+.fix-height
+  &::after
+    content: ""
+    clear: both
+    display: block
