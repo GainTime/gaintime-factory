@@ -1,41 +1,41 @@
 .success
-  +noHoverColor(#6ebc25)
+  +noHoverColor($success)
 
 .danger
-  +noHoverColor(#ed5643)
+  +noHoverColor($danger)
 
 .info
-  +noHoverColor(#31b0d5)
+  +noHoverColor($info)
 
 .warning
-  +noHoverColor(#ec971f)
+  +noHoverColor($warning)
 
 
 %hoverColored
   &.success
-    +hoverBg(#6ebc25)
+    +hoverBg($success)
     &.outline, &.clean
-      +hoverColor(#FFF)
+      +hoverColor($base)
 
   &.danger
-    +hoverBg(#ed5643)
+    +hoverBg($danger)
     &.outline, &.clean
-      +hoverColor(#FFF)
+      +hoverColor($base)
   &.info
-    +hoverBg(#31b0d5)
+    +hoverBg($info)
     &.outline, &.clean
-      +hoverColor(#FFF)
+      +hoverColor($base)
   &.warning
-    +hoverBg(#ec971f)
+    +hoverBg($warning)
     &.outline, &.clean
-      +hoverColor(#FFF)
-        
+      +hoverColor($base)
+
 %textColored
   &.success
     color: #299209!important
   &.danger
-    color: #ed5643!important
+    color: $danger!important
   &.warning
-    color: #ec971f!important
+    color: $warning!important
   &.info
-    color: #31b0d5!important
+    color: $info!important

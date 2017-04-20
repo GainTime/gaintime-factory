@@ -1,5 +1,5 @@
 %field
-  background-color: #FFF
+  background-color: $base
   border: 1px solid #d1d5da
   border-radius: 3px
   box-shadow: inset 0 1px 2px rgba(27,31,35,0.075)
@@ -13,11 +13,11 @@
   vertical-align: middle
 
 [disabled]
-  background-color: #E3E3E3!important
+  background-color: $disabled !important
   cursor: not-allowed
 
 [readonly]
-  background-color: #F2F2F2 !important
+  background-color: $readonly !important
 
 .field
   @extend %field

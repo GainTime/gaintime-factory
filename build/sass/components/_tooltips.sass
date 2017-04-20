@@ -4,14 +4,14 @@
       display: block
 
 %tooltip
-  background-color: transparentize(#000, .2)
+  background-color: transparentize($black, .2)
   position: absolute
 .tooltip
   @extend %tooltip
   font-size: 12px
   display: none
   border-radius: 5px
-  color: #FFF
+  color: $white
   left: 5px
   max-width: 200px
   padding: 5px 10px
@@ -28,7 +28,7 @@
     content: ""
     top: -3px
     transform: rotate(45deg)
-    border-top: 7px solid transparentize(#000, .2)
+    border-top: 7px solid transparentize($black, .2)
     border-right: 7px solid
     color: transparent
     background-color: transparent

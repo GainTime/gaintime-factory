@@ -9,7 +9,7 @@
   -moz-box-shadow: $string
   -webkit-box-shadow: $string
 
-=coloredElement($bg, $color: #FFF, $border: $bg)
+=coloredElement($bg, $color: $white, $border: $bg)
   background-color: $bg
   border-color: $border
   color: $color
@@ -20,7 +20,7 @@
   &:hover, &:focus
     background-color: transparentize($bg, 0.3)!important
 
-=noHoverColor($bg, $color: #FFF, $border: $bg)
+=noHoverColor($bg, $color: $white, $border: $bg)
   border-color: $border
   background-color: $bg
   color: $color

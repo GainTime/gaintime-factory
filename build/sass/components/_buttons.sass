@@ -10,7 +10,7 @@
 
   &:hover
     font-weight: 700
-    color: #000
+    color: darken($color-default, 10)
 
   &:after
     content: "×"
@@ -19,7 +19,7 @@
 %btn
   border: 1px solid
   border-radius: 3px
-  color: #333
+  color: $color-default
   cursor: pointer
   font-family: 'Roboto',Helvetica,Arial,sans-serif
   text-decoration: none
@@ -43,7 +43,7 @@
   margin: 15px 0
   .btn
     margin: 5px 2.5px
-    
+
 @media (max-width: 768px)
   .action span
     display: none
