@@ -13,8 +13,11 @@
   vertical-align: middle
 
 [disabled]
-  background-color: #EEE!important
+  background-color: #E3E3E3!important
   cursor: not-allowed
+
+[readonly]
+  background-color: #F2F2F2 !important
 
 .field
   @extend %field
@@ -28,9 +31,13 @@
   & > *
     display: block
     margin: 5px 0
-    
+
 .gt-form
   max-width: 500px
+
+  small
+    display: block
+    color: #6B6B6B
 
   input[type=checkbox], input[type=radio]
     @extend %checkers

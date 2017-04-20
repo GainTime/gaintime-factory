@@ -1,0 +1,60 @@
+%drop
+  position: relative
+  cursor: pointer
+  display: inline-block
+  margin: 15px 0
+  &.btn
+    &::after
+      right: -10px
+      bottom: +5px
+  & > *
+    display: inline-block
+    vertical-align: middle
+  &::after
+    content: "◣"
+    display: inline-block
+    vertical-align: middle
+    padding: 0
+    position: relative
+    transform: rotate(-45deg)
+  a
+    text-decoration: none
+
+  img
+    height: 100%
+
+  ul
+    margin: 0
+    display: none
+    background-clip: padding-box
+    background-color: #FFF
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.4)
+    padding: 5px 0
+    min-width: 120px
+    position: absolute
+    top: 100%
+    z-index: 5
+    list-style: none
+    margin: 3px 0
+
+    li
+      padding: 5px 10px
+      border: none
+      color: #333
+      &:hover
+        background-color: #d1d5da
+
+.dropdown-right, .dropup-right
+  @extend %drop
+  ul
+    right: 0
+
+.dropdown-left, .dropdown, .dropup-left, .dropup
+  @extend %drop
+  ul
+    left: 0
+
+.dropup-left, .dropup-right, .dropup
+  ul
+    bottom: 100%
+    top: auto

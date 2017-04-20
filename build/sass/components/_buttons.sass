@@ -1,3 +1,21 @@
+.close
+  margin: 0
+  padding: 5px
+  border: 0
+  background: none
+  cursor: pointer
+  position: absolute
+  right: 5px
+  top: 0px
+
+  &:hover
+    font-weight: 700
+    color: #000
+
+  &:after
+    content: "×"
+    font-size: 16px
+
 %btn
   border: 1px solid
   border-radius: 3px
@@ -5,13 +23,14 @@
   cursor: pointer
   font-family: 'Roboto',Helvetica,Arial,sans-serif
   text-decoration: none
+  +transition()
+  @extend %hoverColored
 
 .btn
   @extend %btn
-  font-size: 18px
   margin: 15px 0
   padding: 6px 20px
-  &:hover
+  &:hover, &:focus
     background-color: #D1D1D1
 
 .action
@@ -20,6 +39,11 @@
   margin: 0 2.5px
   text-align: center
 
+.btn-group
+  margin: 15px 0
+  .btn
+    margin: 5px 2.5px
+    
 @media (max-width: 768px)
   .action span
     display: none

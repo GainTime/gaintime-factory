@@ -4,38 +4,22 @@
   padding: 10px
   position: relative
   margin-bottom: 5px
+  +transition()
+
   *
     margin: 0
 
   &.success
-    +noHoverColor(#c9dec1, #333)
+    +noHoverColor(#c9dec1, #333, #6ebc25)
 
   &.danger
-    +noHoverColor(#ebcccc, #333)
+    +noHoverColor(#ebcccc, #333, #ed5643)
 
   &.warning
-    +noHoverColor(#faf2cc, #333)
+    +noHoverColor(#faf2cc, #333, #ec971f)
 
   &.info
-    +noHoverColor(#bcdff1, #333)
-
-  .close
-    margin: 0
-    padding: 5px
-    border: 0
-    background: none
-    cursor: pointer
-    position: absolute
-    right: 5px
-    top: 0px
-
-    &:hover
-      font-weight: 700
-      color: #000
-
-    &:after
-      content: "×"
-      font-size: 16px
+    +noHoverColor(#bcdff1, #333, #31b0d5)
 
 .inform
   border-left: 15px solid

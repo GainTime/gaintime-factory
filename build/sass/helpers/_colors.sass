@@ -1,11 +1,41 @@
 .success
-  +coloredElement(#6ebc25)
+  +noHoverColor(#6ebc25)
 
 .danger
-  +coloredElement(#ed5643)
+  +noHoverColor(#ed5643)
 
 .info
-  +coloredElement(#31b0d5)
+  +noHoverColor(#31b0d5)
 
 .warning
-  +coloredElement(#ec971f)
+  +noHoverColor(#ec971f)
+
+
+%hoverColored
+  &.success
+    +hoverBg(#6ebc25)
+    &.outline, &.clean
+      +hoverColor(#FFF)
+
+  &.danger
+    +hoverBg(#ed5643)
+    &.outline, &.clean
+      +hoverColor(#FFF)
+  &.info
+    +hoverBg(#31b0d5)
+    &.outline, &.clean
+      +hoverColor(#FFF)
+  &.warning
+    +hoverBg(#ec971f)
+    &.outline, &.clean
+      +hoverColor(#FFF)
+        
+%textColored
+  &.success
+    color: #299209!important
+  &.danger
+    color: #ed5643!important
+  &.warning
+    color: #ec971f!important
+  &.info
+    color: #31b0d5!important

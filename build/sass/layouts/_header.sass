@@ -1,10 +1,15 @@
-.gt-top-menu
+.gt-top-menu, .menu
+  position: relative
   background-color: $base
   height: 60px
   padding: 10px 5%
   +box-shadow (0px 0px 4px 0px, rgba(50, 50, 50, 0.4))
 
   & > img, nav, ul, li
+    height: 100%
+
+  [class^=dropdown]
+    margin: 0 1px
     height: 100%
 
   nav
@@ -26,10 +31,15 @@
     border-bottom: 2px solid transparent
     +transition()
 
+    &.dropdown
+      &::after
+        top: -5px
+        right: -2px
+
     &:hover, &.active
       border-color: $default
 
-  #menu-icon, #menu-toggle
+  .menu-toggle
     display: none
     cursor: pointer
     height: 100%
@@ -40,40 +50,70 @@
 =responsive-menu()
   nav
     height: auto
-    right: 0
     max-width: 0px
     overflow: hidden
     position: absolute
-    top: 60px
+    top: 100%
     +transition()
+
+    [class^=dropdown] ul
+      width: 100%
 
     &:after
       clear: both
       content: ""
       display: block
-    ul
+    & > ul
       padding: 0
       display: inline
       background-color: $base
 
-    li
-      width: 100%
-      display: inline-block
-      &:hover, .active
-        background-color: $default
-        border-color: transparent!important
-        color: #FFF
+      & > li
+        width: 100%
+        display: inline-block
+        &.active
+          background-color: #ebeef0
+          border-color: transparent!important
+        &:hover
+          background-color: #d1d5da
+          border-color: transparent!important
     a
       color: #333
 
-  #menu-icon
+  .menu-toggle
     display: inline !important
     float: right
     padding: 0
-
-  #menu-toggle:checked ~ nav
-    max-width: 400px
-
+    
 @media (max-width: 768px)
-  .xs-left
-    +responsive-menu()
+  .gt-top-menu
+    &.xs-left, &.xs-right
+      +responsive-menu()
+    &.xs-left
+      nav
+        right: 0
+    &.xs-right
+      nav
+        left: 0
+
+@media (max-width: 992px)
+  .gt-top-menu
+    &.sm-left, &.sm-right
+      +responsive-menu()
+    &.sm-left
+      nav
+        right: 0
+    &.sm-right
+      nav
+        left: 0
+
+@media (max-width: 1200px)
+  .gt-top-menu
+    &.md-left, &.md-right
+      +responsive-menu()
+    &.md-left
+      nav
+        right: 0
+    &.md-right
+      nav
+        left: 0

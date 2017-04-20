@@ -4,23 +4,30 @@
   -ms-border-radius: $radius
   -webkit-border-radius: $radius
 
-=box-shadow($string, $color)
-  box-shadow: $string $color
-  -moz-box-shadow: $string $color
-  -webkit-box-shadow: $string $color
+=box-shadow($string...)
+  box-shadow: $string
+  -moz-box-shadow: $string
+  -webkit-box-shadow: $string
 
 =coloredElement($bg, $color: #FFF, $border: $bg)
   background-color: $bg
   border-color: $border
   color: $color
-  &:hover
-    background-color: transparentize($bg, 0.3)
+  &:hover, &:focus
+    background-color: transparentize($bg, 0.3)!important
 
-=noHoverColor($bg, $color: #FFF)
+=hoverBg($bg)
+  &:hover, &:focus
+    background-color: transparentize($bg, 0.3)!important
+
+=noHoverColor($bg, $color: #FFF, $border: $bg)
+  border-color: $border
   background-color: $bg
   color: $color
-  &:hover
-    background-color: $bg
+
+=hoverColor($color)
+  &:hover, &:focus
+    color: $color!important
 
 =transition($transition: all, $time: 0.2s)
   -webkit-transition: $transition $time

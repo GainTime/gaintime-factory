@@ -16,12 +16,19 @@ body
   line-height: 1.42857
   background-color: $body
 
-section
+.website
+  section
+    width: 100%
+    padding: 30px 5%
+    margin: 0
+    +box-shadow(unset)
+
+section, .website .container
   background-color: $base
   margin: 30px auto
   padding: 30px
   width: calc(100% - 10%)
-  box-shadow: 0 1px 1px 0 rgba(0,0,0,0.06),0 2px 5px 0 rgba(0,0,0,0.2)
+  +box-shadow (0 1px 1px 0 rgba(0,0,0,0.06),0 2px 5px 0 rgba(0,0,0,0.2))
 
 .top-bar
   position: relative
