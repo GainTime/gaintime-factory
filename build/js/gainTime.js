@@ -73,7 +73,17 @@ function closeDropdowns() {
 function bar(x) {
   var progress = document.createElement("div");
   progress.setAttribute("class", "percentage " + x.dataset.color);
-  progress.setAttribute("style", "width: " + x.dataset.percentage)
+  progress.setAttribute("style", "width: " + x.dataset.percentage);
+
+  var text = document.createTextNode(x.dataset.text)
+
+  if (text.data != "undefined") {
+    var span = document.createElement("span");
+    span.appendChild(text);
+    span.style.padding = "0 10px";
+    progress.appendChild(span);
+    x.style.height = "20px";
+  }
 
   x.appendChild(progress);
 }

@@ -15,7 +15,8 @@ body
   font-size: 14px
   line-height: 1.42857
   background-color: $body
-
+  > footer
+    padding: 15px 5%
 .website
   section
     width: 100%
@@ -29,6 +30,19 @@ section, .website .container
   padding: 30px
   width: calc(100% - 10%)
   +box-shadow (0 1px 1px 0 rgba(0,0,0,0.06),0 2px 5px 0 rgba(0,0,0,0.2))
+  &::after
+    clear: both
+    content: ""
+    display: block
+a
+  color: #337ab7
+  text-decoration: none
+  &:hover
+    text-decoration: underline
+    color: darken(#337ab7, 10)
+
+button
+  cursor: pointer
 
 .top-bar
   position: relative
