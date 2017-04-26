@@ -24,7 +24,7 @@ p , li, h1, h2, h3, h4, h5, h6
 
 .code-block
   background-color: rgb(40, 44, 52)
-  border-radius: 5px
+  +border-radius(5px)
   display: block
   margin: 15px 0
   padding: 15px
@@ -36,13 +36,8 @@ p , li, h1, h2, h3, h4, h5, h6
     color: #abb2bf
   &.html
     color: #e06c75
-    & > span:not(.tx)
-      &::after
-        content: ">"
-        color: #abb2bf
-      &::before
-        content: "<"
-        color: #abb2bf
+  &.css
+    color: #13C0A8
 
   pre > code
     display: inline

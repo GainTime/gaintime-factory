@@ -1,16 +1,25 @@
+select
+  cursor: pointer
+
 %field
   background-color: $base
-  border: 1px solid #d1d5da
-  border-radius: 3px
-  box-shadow: inset 0 1px 2px rgba(27,31,35,0.075)
-  display: block
+  border: 1px solid #bcbcbc
+  +border-radius(3px)
+  +box-shadow (inset 0 1px 2px rgba(27,31,35,0.075))
   margin: 5px 0
   padding: 8px 10px
+  &:focus, &.has-focus
+    border-color: $default
+  &.has-error
+    border-color: #F00
+  &.has-warning
+    border-color: $warning
 
 %checkers
   margin: 0px
   display: inline-block
   vertical-align: middle
+  cursor: pointer
 
 [disabled]
   background-color: $disabled !important
@@ -21,8 +30,6 @@
 
 .field
   @extend %field
-  &:focus
-    border-color: $default
 
   &[type=checkbox], &[type=radio]
     @extend %checkers
@@ -32,11 +39,9 @@
     display: block
     margin: 5px 0
 
-.gt-form
-  max-width: 500px
+%gt-form
 
   small
-    display: block
     color: #6B6B6B
 
   input[type=checkbox], input[type=radio]
@@ -44,10 +49,24 @@
 
   input[type=text], input[type=password], input[type=email], select, textarea
     @extend %field
-    width: 100%
-
-    &:focus
-      border-color: $default
 
   textarea
     resize: vertical
+
+.gt-form, .gt-form-inline
+  @extend %gt-form
+
+.gt-form
+  max-width: 500px
+  input[type=text], input[type=password], input[type=email], select, textarea, small
+    display: block
+    width: 100%
+
+@media (min-width: 769px)
+  .gt-form-inline
+    *
+      display: inline-block !important
+      vertical-align: middle !important
+      width: auto !important
+      margin-left: 2.5px
+      margin-right: 2.5px

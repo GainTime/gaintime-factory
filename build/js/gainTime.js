@@ -1,204 +1,143 @@
-closes = [] .slice.call(document.getElementsByClassName('close'));
-deletes = [] .slice.call(document.getElementsByClassName('deleter'));
-bars = [] .slice.call(document.getElementsByClassName('bar'));
-toValidate = [] .slice.call(document.querySelectorAll('[data-validate]'));
-dropdowns = [] .slice.call(document.querySelectorAll('.dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right'));
-menuToggles = [] .slice.call(document.getElementsByClassName('menu-toggle'));
-tooltips = [] .slice.call(document.querySelectorAll('[data-tooltip]'));
-
-tooltips.forEach(function(x) {tooltip(x)});
-menuToggles.forEach(function(x) {menuToggle(x)});
-bars.forEach(function(x) {bar(x)});
-closes.forEach(function(x) {close(x)});
-deletes.forEach(function(x) {deleter(x)});
-dropdowns.forEach(function(x) {makeDropdown(x)});
-
-toValidate.forEach(function(x) {
-  formater(x);
-  validates(x);
-  switchValidations(x);
-});
-
-
-document.addEventListener("click", function() {
-  closeMenus()
-  closeDropdowns()
-});
-
-function menuToggle(x) {
-  var nav = x.nextElementSibling;
-  x.addEventListener("click", function(e) {
-    e.stopPropagation();
-    x.checked = !x.checked;
-    (x.checked) ? nav.style.maxWidth = "400px" : nav.style.removeProperty('max-width');
-  });
+function menuToggle(a) {
+    var b = a.nextElementSibling;
+    a.addEventListener("click", function(c) {
+        c.stopPropagation(), a.checked = !a.checked, a.checked ? b.style.maxWidth = "400px" : b.style.removeProperty("max-width")
+    })
 }
 
 function closeMenus() {
-  menuToggles.forEach(function(x) {
-    x.nextElementSibling.style.removeProperty('max-width');
-  });
+    menuToggles.forEach(function(a) {
+        a.nextElementSibling.style.removeProperty("max-width")
+    })
 }
 
-function makeDropdown(x) {
-  x.setAttribute("role", "button");
-  x.setAttribute("tabindex", "0");
-  x.addEventListener("click", function(e) {
-    e.stopPropagation();
-    toogleDropdown(x);
-  });
-  x.addEventListener("keypress", function(e) {
-    // e.stopPropagation();
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      toogleDropdown(x);
-    }
-    if (e.keyCode === 27) closeDropdowns()
-  });
+function makeDropdown(a) {
+    a.setAttribute("role", "button"), a.setAttribute("tabindex", "0"), a.addEventListener("click", function(b) {
+        b.stopPropagation(), toogleDropdown(a)
+    }), a.addEventListener("keypress", function(b) {
+        13 === b.keyCode && (b.preventDefault(), toogleDropdown(a)), 27 === b.keyCode && closeDropdowns()
+    })
 }
 
-function toogleDropdown(x) {
-  var list = x.getElementsByTagName('ul')[0];
-  var isOpen = (!list.style.display)? false: true;
-  closeDropdowns();
-  (!isOpen)? list.style.display = "inline-table": list.style.removeProperty('display');
+function toogleDropdown(a) {
+    var b = a.getElementsByTagName("ul")[0],
+        c = !!b.style.display;
+    closeDropdowns(), c ? b.style.removeProperty("display") : b.style.display = "inline-table"
 }
 
 function closeDropdowns() {
-  dropdowns.forEach(function(x) {
-    x.getElementsByTagName('ul')[0].style.removeProperty('display');
-  });
+    dropdowns.forEach(function(a) {
+        a.getElementsByTagName("ul")[0].style.removeProperty("display")
+    })
 }
 
-function bar(x) {
-  var progress = document.createElement("div");
-  progress.setAttribute("class", "percentage " + x.dataset.color);
-  progress.setAttribute("style", "width: " + x.dataset.percentage);
-
-  var text = document.createTextNode(x.dataset.text)
-
-  if (text.data != "undefined") {
-    var span = document.createElement("span");
-    span.appendChild(text);
-    span.style.padding = "0 10px";
-    progress.appendChild(span);
-    x.style.height = "20px";
-  }
-
-  x.appendChild(progress);
-}
-
-function tooltip(x) {
-  x.style.position = "relative";
-  var text = document.createTextNode(x.dataset.tooltip)
-  var tooltip = document.createElement("div");
-  tooltip.appendChild(text);
-  tooltip.setAttribute("class", "tooltip");
-  x.appendChild(tooltip);
-}
-
-function close(x) {
-  x.addEventListener("click", function(e) {
-    e.stopPropagation();
-    remove(x.parentElement);
-  });
-}
-
-function fadeOut(el) {
-  var id = setInterval(frame, 1);
-  function frame() {
-    el.style.opacity = "0";
-    el.style.padding = "0";
-    el.style.maxHeight = '0px';
-    clearInterval(id);
-  }
-}
-
-function remove(el) {
-  el.parentElement.removeChild(el);
-}
-
-function deleter(x) {
-  x.addEventListener("click", function(e) {
-    if (!confirm("Deseja continuar?")) {
-      e.preventDefault()
-      return false;
+function bar(a) {
+    var b = document.createElement("div");
+    b.setAttribute("class", "percentage " + a.dataset.color), b.setAttribute("style", "width: " + a.dataset.percentage);
+    var c = document.createTextNode(a.dataset.text);
+    if ("undefined" != c.data) {
+        var d = document.createElement("span");
+        d.appendChild(c), d.style.padding = "0 10px", b.appendChild(d), a.style.height = "20px"
     }
-  });
+    a.appendChild(b)
 }
 
-function formater(x) {
-  x.addEventListener("keypress", function(e) {
-    switch (x.dataset.validate) {
-      case "cpf":
-        formatCpf(x, e);
-        break;
+function tooltip(a) {
+    a.style.position = "relative";
+    var b = document.createTextNode(a.dataset.tooltip),
+        c = document.createElement("div");
+    c.appendChild(b), c.setAttribute("class", "tooltip"), a.appendChild(c)
+}
+
+function close(a) {
+    a.addEventListener("click", function(b) {
+        b.stopPropagation(), remove(a.parentElement)
+    })
+}
+
+function fadeOut(a) {
+    function c() {
+        a.style.opacity = "0", a.style.padding = "0", a.style.maxHeight = "0px", clearInterval(b)
     }
-  });
+    var b = setInterval(c, 1)
 }
 
-function formatCpf(x, ev) {
-  if (ev.keyCode != 8 && ev.keyCode != 46) {
-    if (x.value.length == 3 || x.value.length == 7) x.value = x.value + '.';
-    if (x.value.length == 11) x.value = x.value + '-';
-  }
+function remove(a) {
+    a.parentElement.removeChild(a)
 }
 
-function validates(x) {
-  x.addEventListener("blur", function(e) {
-    switchValidations(x);
-  });
+function deleter(a) {
+    a.addEventListener("click", function(a) {
+        if (!confirm("Deseja continuar?")) return a.preventDefault(), !1
+    })
 }
 
-function switchValidations(x) {
-  switch (x.dataset.validate) {
-    case 'text':
-      searcher(x, /^[a-zA-ZÃẼĨÕŨãẽĩõũÁÉÍÓÚáéíóúÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöü' ]*$/);
-      break;
-    case 'num':
-      searcher(x, /^[\d]*$/g);
-      break;
-    case 'email':
-      searcher(x, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/)
-      break;
-    case 'cpf':
-      (cpf(x) || x.value == "")? x.style.removeProperty('border'): x.style.border = "1px solid #F00";
-      break;
-    default:
-      searcher(x, new RegExp(x.dataset.validate));
-      break;
-  }
+function formater(a) {
+    a.addEventListener("keypress", function(b) {
+        switch (a.dataset.validate) {
+            case "cpf":
+                formatCpf(a, b)
+        }
+    })
 }
 
-function searcher(x, pattern) {
-  var matches = x.value.match(pattern);
-  (matches == null)? x.style.border = "1px solid #F00": x.style.removeProperty('border');
+function formatCpf(a, b) {
+    8 != b.keyCode && 46 != b.keyCode && (3 != a.value.length && 7 != a.value.length || (a.value = a.value + "."), 11 == a.value.length && (a.value = a.value + "-"))
 }
 
-function cpf(x) {
-  var cpf = x.value.replace(/\./g, "");
-  cpf = cpf.replace(/\-/g, "");
-
-	var sum;
-  var mod;
-  sum = 0;
-
-	if (cpf == "00000000000") return false;
-
-	for (i = 1; i <= 9; i ++) sum += parseInt(cpf.substring(i-1, i)) * (11 - i);
-
-  mod = (sum * 10) % 11;
-
-  if ((mod == 10) || (mod == 11))  mod = 0;
-  if (mod != parseInt(cpf.substring(9, 10)) ) return false;
-
-	sum = 0;
-
-  for (i = 1; i <= 10; i++) sum = sum + parseInt(cpf.substring(i-1, i)) * (12 - i);
-  mod = (sum * 10) % 11;
-
-  if ((mod == 10) || (mod == 11))  mod = 0;
-  if (mod != parseInt(cpf.substring(10, 11) ) ) return false;
-
-  return true;
+function validates(a) {
+    a.addEventListener("blur", function(b) {
+        switchValidations(a)
+    })
 }
+
+function switchValidations(a) {
+    switch (a.dataset.validate) {
+        case "text":
+            searcher(a, /^[a-zA-ZÃẼĨÕŨãẽĩõũÁÉÍÓÚáéíóúÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöü' ]*$/);
+            break;
+        case "num":
+            searcher(a, /^[\d]*$/g);
+            break;
+        case "email":
+            searcher(a, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/);
+            break;
+        case "cpf":
+            cpf(a) || "" == a.value ? a.style.removeProperty("border") : a.style.border = "1px solid #F00";
+            break;
+        default:
+            searcher(a, new RegExp(a.dataset.validate))
+    }
+}
+
+function searcher(a, b) {
+    null == a.value.match(b) ? a.style.border = "1px solid #F00" : a.style.removeProperty("border")
+}
+
+function cpf(a) {
+    var b = a.value.replace(/\./g, "");
+    b = b.replace(/\-/g, "");
+    var c, d;
+    if (c = 0, "00000000000" == b) return !1;
+    for (i = 1; i <= 9; i++) c += parseInt(b.substring(i - 1, i)) * (11 - i);
+    if (d = 10 * c % 11, 10 != d && 11 != d || (d = 0), d != parseInt(b.substring(9, 10))) return !1;
+    for (c = 0, i = 1; i <= 10; i++) c += parseInt(b.substring(i - 1, i)) * (12 - i);
+    return d = 10 * c % 11, 10 != d && 11 != d || (d = 0), d == parseInt(b.substring(10, 11))
+}
+closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].slice.call(document.getElementsByClassName("deleter")), bars = [].slice.call(document.getElementsByClassName("bar")), toValidate = [].slice.call(document.querySelectorAll("[data-validate]")), dropdowns = [].slice.call(document.querySelectorAll(".dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right")), menuToggles = [].slice.call(document.getElementsByClassName("menu-toggle")), tooltips = [].slice.call(document.querySelectorAll("[data-tooltip]")), tooltips.forEach(function(a) {
+    tooltip(a)
+}), menuToggles.forEach(function(a) {
+    menuToggle(a)
+}), bars.forEach(function(a) {
+    bar(a)
+}), closes.forEach(function(a) {
+    close(a)
+}), deletes.forEach(function(a) {
+    deleter(a)
+}), dropdowns.forEach(function(a) {
+    makeDropdown(a)
+}), toValidate.forEach(function(a) {
+    formater(a), validates(a), switchValidations(a)
+}), document.addEventListener("click", function() {
+    closeMenus(), closeDropdowns()
+});

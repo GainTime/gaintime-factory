@@ -3,10 +3,10 @@
   border-collapse: collapse
 
   thead
-    background-color: #F3F3F3
+    background-color: #EFEFEF
     border: 1px solid rgba(23, 67, 104, 0.35)
   tfoot
-    background-color: #F3F3F3
+    background-color: #EFEFEF
     border-bottom: 1px solid rgba(23, 67, 104, 0.35)
 
   tr > td, tr > th
@@ -23,7 +23,10 @@
     img
       height: 35px
       width: 35px
-
   &.striped
-    tr:nth-child(even)
-      background-color: #F5F5F5
+    tbody tr:nth-child(even)
+      background-color: #E6E6E6
+
+  &.hovered
+    tbody tr:hover
+      background-color: rgba(206, 218, 248, 0.85)
