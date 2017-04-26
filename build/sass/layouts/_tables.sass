@@ -1,0 +1,32 @@
+.gt-table
+  width: 100%
+  border-collapse: collapse
+
+  thead
+    background-color: #EFEFEF
+    border: 1px solid rgba(23, 67, 104, 0.35)
+  tfoot
+    background-color: #EFEFEF
+    border-bottom: 1px solid rgba(23, 67, 104, 0.35)
+
+  tr > td, tr > th
+    border-top: 1px solid rgba(23, 67, 104, 0.35)
+    line-height: 1.57143
+    max-width: 200px
+    padding: 10px
+    vertical-align: top
+
+  tr > th
+    border-bottom: 2px
+
+  tr
+    img
+      height: 35px
+      width: 35px
+  &.striped
+    tbody tr:nth-child(even)
+      background-color: #E6E6E6
+
+  &.hovered
+    tbody tr:hover
+      background-color: rgba(206, 218, 248, 0.85)

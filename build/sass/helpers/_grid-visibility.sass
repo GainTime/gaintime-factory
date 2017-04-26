@@ -1,0 +1,41 @@
+.vxs, .vsm, .vmd, .vosm, .voxs, .vomd, .volg
+  display: none
+
+.hoxs, .hosm, .homd, .holg
+  display: inline
+
+@media (min-width: 769px) and (max-width: 992px)
+  .hosm
+    display: none!important
+  .vosm
+    display: inline
+
+@media (min-width: 993px) and (max-width: 1200px)
+  .homd
+    display: none!important
+  .vomd
+    display: inline
+
+@media (min-width: 1201px)
+  .holg
+    display: none!important
+  .volg
+    display: inline
+
+@media (max-width: 768px)
+  .hxs, .hoxs
+    display: none!important
+  .vxs, .voxs
+    display: inline
+
+@media (max-width: 992px)
+  .hsm
+    display: none!important
+  .vsm
+    display: inline
+
+@media (max-width: 1200px)
+  .hmd
+    display: none!important
+  .vmd
+    display: inline

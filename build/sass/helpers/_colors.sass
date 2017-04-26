@@ -1,0 +1,110 @@
+%badgeInColor
+  .badge
+    background: #FFF
+    color: $color-default
+
+%success
+  +noHoverColor($success)
+.success
+  @extend %success
+  @extend %badgeInColor
+
+%danger
+  +noHoverColor($danger)
+.danger
+  @extend %danger
+  @extend %badgeInColor
+
+%info
+  +noHoverColor($info)
+.info
+  @extend %info
+  @extend %badgeInColor
+
+%warning
+  +noHoverColor($warning)
+.warning
+  @extend %warning
+  @extend %badgeInColor
+
+%dark
+  +noHoverColor($color-default)
+.dark
+  @extend %dark
+  @extend %badgeInColor
+
+%white
+  +noHoverColor($white, #333)
+.white
+  @extend %white
+  .badge
+    background: $color-default
+    color: $white
+
+%noHoverColored
+  &.success
+    @extend %success
+    @extend %badgeInColor
+  &.danger
+    @extend %danger
+    @extend %badgeInColor
+  &.info
+    @extend %info
+    @extend %badgeInColor
+  &.warning
+    @extend %warning
+    @extend %badgeInColor
+  &.dark
+    @extend %dark
+    @extend %badgeInColor
+
+%hoverColored
+  &.success
+    +hoverBg($success)
+    +hoverColor($base)
+
+  &.danger
+    +hoverBg($danger)
+    +hoverColor($base)
+
+  &.info
+    +hoverBg($info)
+    +hoverColor($base)
+
+  &.warning
+    +hoverBg($warning)
+    +hoverColor($base)
+
+  &.dark
+    +hoverBg($color-default)
+    +hoverColor($base)
+    &.outline, &.clean
+      +hoverColor($color-default)
+
+  &.white
+    &.outline
+      color: #FFF
+      +hoverBg($white)
+      +hoverColor($color-default)
+
+%textColored
+  &.success
+    color: #299209!important
+    .badge
+      @extend %success
+  &.danger
+    color: $danger!important
+    .badge
+      @extend %danger
+  &.warning
+    color: $warning!important
+    .badge
+      @extend %warning
+  &.info
+    color: $info!important
+    .badge
+      @extend %info
+  &.dark
+    color: $color-default!important
+    .badge
+      @extend %dark

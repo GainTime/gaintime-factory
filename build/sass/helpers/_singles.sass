@@ -1,0 +1,49 @@
+.left
+  float: left!important
+.right
+  float: right!important
+
+.hidden
+  display: none!important
+.visible
+  display: inline!important
+
+.center
+  display: block
+  margin-left: auto
+  margin-right: auto
+
+.padding
+  padding: 15px
+  &-lr
+    padding-left: 15px
+    padding-right: 15px
+  &-tb
+    padding-top: 15px
+    padding-bottom: 15px
+
+.content-align
+  display: block
+  margin: 15px 0
+  & > *
+    display: inline-block
+    vertical-align: middle
+    margin: 5px 2.5px
+
+.fix-height
+  &::after
+    content: ""
+    clear: both
+    display: table
+
+.brand
+  max-height: 100px
+
+.small
+  max-width: 300px
+.medium
+  max-width: 700px
+.large
+  max-width: 1200px
+.full
+  max-width: 100%

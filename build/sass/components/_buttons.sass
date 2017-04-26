@@ -1,0 +1,52 @@
+.close
+  margin: 0
+  padding: 5px
+  border: 0
+  background: none
+  cursor: pointer
+  position: absolute
+  right: 5px
+  top: 0px
+
+  &:hover
+    font-weight: 700
+    color: darken($color-default, 10)
+
+  &:after
+    content: "×"
+    font-size: 16px
+
+%btn
+  border: 1px solid
+  +border-radius(3px)
+  color: $color-default
+  cursor: pointer
+  font-family: 'Roboto',Helvetica,Arial,sans-serif
+  text-decoration: none
+  +transition()
+  +user-select(none)
+  @extend %hoverColored
+
+.btn
+  @extend %btn
+  background-color: $base
+  margin: 15px 0
+  padding: 6px 18px
+  font-size: 15px
+  &:hover, &:focus
+    background-color: #D1D1D1
+
+.action
+  @extend %btn
+  display: inline-block
+  margin: 2.5px 1.25px
+  padding: 2.5px 5px
+  text-align: center
+
+  &:hover, &:focus
+    text-decoration: none
+    background-color: #D1D1D1
+
+@media (max-width: 768px)
+  .action span
+    display: none

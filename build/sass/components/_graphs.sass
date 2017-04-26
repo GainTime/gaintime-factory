@@ -1,0 +1,20 @@
+%bar
+  +border-radius(3px)
+  height: 100%
+
+.bar
+  @extend %bar
+  background-color: #DAD7D7
+  height: 10px
+  margin: 5px 0
+  position: relative
+  vertical-align: middle
+
+  .percentage
+    @extend %bar
+    background-color: $blue
+    left: 0
+    position: absolute
+    top: 0
+    overflow: hidden
+    @extend %noHoverColored

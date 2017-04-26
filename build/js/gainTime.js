@@ -1,168 +1,143 @@
-//Painel
-$('#me').on('click', function() {
-    $( "#menu" ).prop( "checked", false )
-    $('#me-menu').toggle('fast');
-});
-
-$(document).on('click', function(e) {
-    var target = $(e.target);
-    if (target.is("#me")||target.is('#me-menu')||(target.parents().is('#me'))) {
-        return true;
-    }
-    else {
-        $('#me-menu').fadeOut('fast');
-    }
-});
-
-//Ask Delete
-
-function askDelete(name, entity, url = '') {
-    if(confirm("Deseja deletar "+ entity +" \""+ name +"\" do sistema?")) {
-        if (url != '') {
-            window.location.href = url;
-        }
-        return true;
-    }
-    return false;
+function menuToggle(a) {
+    var b = a.nextElementSibling;
+    a.addEventListener("click", function(c) {
+        c.stopPropagation(), a.checked = !a.checked, a.checked ? b.style.maxWidth = "400px" : b.style.removeProperty("max-width")
+    })
 }
 
-//Hide Messages
+function closeMenus() {
+    menuToggles.forEach(function(a) {
+        a.nextElementSibling.style.removeProperty("max-width")
+    })
+}
 
-setTimeout(function(){
-    $('.msg').fadeOut();
-}, 3000);
+function makeDropdown(a) {
+    a.setAttribute("role", "button"), a.setAttribute("tabindex", "0"), a.addEventListener("click", function(b) {
+        b.stopPropagation(), toogleDropdown(a)
+    }), a.addEventListener("keypress", function(b) {
+        13 === b.keyCode && (b.preventDefault(), toogleDropdown(a)), 27 === b.keyCode && closeDropdowns()
+    })
+}
 
-// Inputs and Labels
+function toogleDropdown(a) {
+    var b = a.getElementsByTagName("ul")[0],
+        c = !!b.style.display;
+    closeDropdowns(), c ? b.style.removeProperty("display") : b.style.display = "inline-table"
+}
 
-$('document').ready(function() {
-    $('input').each(function() {
-        if ($(this).val().length < 1) {
-            $(this).parent('div').removeClass('has-label');
-            $(this).parent('div').blur();
+function closeDropdowns() {
+    dropdowns.forEach(function(a) {
+        a.getElementsByTagName("ul")[0].style.removeProperty("display")
+    })
+}
+
+function bar(a) {
+    var b = document.createElement("div");
+    b.setAttribute("class", "percentage " + a.dataset.color), b.setAttribute("style", "width: " + a.dataset.percentage);
+    var c = document.createTextNode(a.dataset.text);
+    if ("undefined" != c.data) {
+        var d = document.createElement("span");
+        d.appendChild(c), d.style.padding = "0 10px", b.appendChild(d), a.style.height = "20px"
+    }
+    a.appendChild(b)
+}
+
+function tooltip(a) {
+    a.style.position = "relative";
+    var b = document.createTextNode(a.dataset.tooltip),
+        c = document.createElement("div");
+    c.appendChild(b), c.setAttribute("class", "tooltip"), a.appendChild(c)
+}
+
+function close(a) {
+    a.addEventListener("click", function(b) {
+        b.stopPropagation(), remove(a.parentElement)
+    })
+}
+
+function fadeOut(a) {
+    function c() {
+        a.style.opacity = "0", a.style.padding = "0", a.style.maxHeight = "0px", clearInterval(b)
+    }
+    var b = setInterval(c, 1)
+}
+
+function remove(a) {
+    a.parentElement.removeChild(a)
+}
+
+function deleter(a) {
+    a.addEventListener("click", function(a) {
+        if (!confirm("Deseja continuar?")) return a.preventDefault(), !1
+    })
+}
+
+function formater(a) {
+    a.addEventListener("keypress", function(b) {
+        switch (a.dataset.validate) {
+            case "cpf":
+                formatCpf(a, b)
         }
-    });
-});
+    })
+}
 
-$('.field').click(function() {
-    $(this).addClass('is-focused has-label');
-    $(this).children('input').focus();
-});
+function formatCpf(a, b) {
+    8 != b.keyCode && 46 != b.keyCode && (3 != a.value.length && 7 != a.value.length || (a.value = a.value + "."), 11 == a.value.length && (a.value = a.value + "-"))
+}
 
-$('.field').children('input').blur(function(event) {
-    $(this).parent('.field').removeClass('is-focused');
-    if ($(this).val().length < 1) {
-        $(this).parent('.field').removeClass('has-label');
-    }
-});
+function validates(a) {
+    a.addEventListener("blur", function(b) {
+        switchValidations(a)
+    })
+}
 
-$('input').keydown(function(e) {
-    var code = e.keyCode || e.which;
-    if (code === 9) {
-        $(this).parent('div.field').removeClass('is-focused');
-        if ($(this).val().length < 1) {
-            $(this).parent('div').removeClass('has-label');
-            $(this).parent('div').blur();
-        }
-    }
-});
-
-$('input').focus(function() {
-    $(this).parent('div.field').addClass('is-focused has-label');
-});
-
-$('textarea').focus(function() {
-    $(this).siblings('.menot').addClass('is-focused');
-});
-
-$('textarea').blur(function() {
-    $(this).siblings('.menot').removeClass('is-focused');
-});
-
-$('.btn-file').children('.real').change(function() {
-    $btn = $(this).parent('.btn-file');
-    var arq = this.files[0];
-    $fse = $btn.siblings('.field').children('.false');
-    $fse.val(arq.name);
-    $fse.parent('div').addClass('is-focused');
-});
-
-/* Password verification */
-$('#new').blur(function(event) {
-    if (!$('#confirm').val()) {
-        $('#confirm').after('<div class="msg warning drop">Confirme a sua senha.</div>');
-        setTimeout(function() {
-            $('.drop').remove();
-        }, 3000);
-    }
-});
-
-$('#confirm').blur(function(event) {
-    if ($('#new').val() != $('#confirm').val()) {
-        $('#new').val('');
-        $('#confirm').val('');
-        $(window).scrollTop(0);
-        $('#top-msg').after('<div class="msg fail drop">* As senhas inseridas não conferem</div>');
-        setTimeout(function() {
-            $('.drop').remove();
-        }, 3000);
-    }
-});
-
-$('#form-control').click(function(event) {
-    if ($('.form-controled').hasClass('invisible')) {
-        $('.form-controled').removeClass('invisible');
-        $('#new').focus();
-    }
-    else {
-        $('.form-controled').addClass('invisible');
-    }
-});
-
-$('#changer').change(function() {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        $('#prev-img').attr({
-            'src':e.target.result,
-            'alt':'Preview',
-            'style':'width:'+$('#changer').width()+';height:'+$('#changer').height()+';',
-            'title':'Preview'
-        });
-    };
-    reader.readAsDataURL(this.files[0]);
-});
-
-setTimeout(function() {
-    $('.msg').fadeOut();
-}, 2000);
-
-function block() {
-    document.getElementById('btn-pair').style.display = "none";
-    document.getElementById('edit').style.display = "block";
-    window.scrollTo(0,0);
-    inputs = document.getElementsByClassName('form-input');
-    for (var i = 0; i < inputs.length; i++) {
-        inputs[i].disabled = true;
-    }
-    field = document.getElementsByClassName('field');
-    for (var i = 0; i < field.length; i++) {
-        field[i].style.pointerEvents = "none";;
+function switchValidations(a) {
+    switch (a.dataset.validate) {
+        case "text":
+            searcher(a, /^[a-zA-ZÃẼĨÕŨãẽĩõũÁÉÍÓÚáéíóúÂÊÎÔÛâêîôûÀÈÌÒÙàèìòùÄËÏÖÜäëïöü' ]*$/);
+            break;
+        case "num":
+            searcher(a, /^[\d]*$/g);
+            break;
+        case "email":
+            searcher(a, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/);
+            break;
+        case "cpf":
+            cpf(a) || "" == a.value ? a.style.removeProperty("border") : a.style.border = "1px solid #F00";
+            break;
+        default:
+            searcher(a, new RegExp(a.dataset.validate))
     }
 }
 
-function editing(goTo, first) {
-    document.getElementById('edit').style.display = "none";
-    document.getElementById('btn-pair').style.display = "block";
-    window.location.href = goTo;
-    inputs = document.getElementsByClassName('form-input');
-
-    for( var i = 0; i < inputs.length; i++) {
-        inputs[i].disabled = false;
-    }
-
-    document.getElementById(first).focus();
-    field = document.getElementsByClassName('getme');
-
-    for( var i = 0; i < field.length; i++) {
-        field[i].style.pointerEvents = "auto";;
-    }
+function searcher(a, b) {
+    null == a.value.match(b) ? a.style.border = "1px solid #F00" : a.style.removeProperty("border")
 }
+
+function cpf(a) {
+    var b = a.value.replace(/\./g, "");
+    b = b.replace(/\-/g, "");
+    var c, d;
+    if (c = 0, "00000000000" == b) return !1;
+    for (i = 1; i <= 9; i++) c += parseInt(b.substring(i - 1, i)) * (11 - i);
+    if (d = 10 * c % 11, 10 != d && 11 != d || (d = 0), d != parseInt(b.substring(9, 10))) return !1;
+    for (c = 0, i = 1; i <= 10; i++) c += parseInt(b.substring(i - 1, i)) * (12 - i);
+    return d = 10 * c % 11, 10 != d && 11 != d || (d = 0), d == parseInt(b.substring(10, 11))
+}
+closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].slice.call(document.getElementsByClassName("deleter")), bars = [].slice.call(document.getElementsByClassName("bar")), toValidate = [].slice.call(document.querySelectorAll("[data-validate]")), dropdowns = [].slice.call(document.querySelectorAll(".dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right")), menuToggles = [].slice.call(document.getElementsByClassName("menu-toggle")), tooltips = [].slice.call(document.querySelectorAll("[data-tooltip]")), tooltips.forEach(function(a) {
+    tooltip(a)
+}), menuToggles.forEach(function(a) {
+    menuToggle(a)
+}), bars.forEach(function(a) {
+    bar(a)
+}), closes.forEach(function(a) {
+    close(a)
+}), deletes.forEach(function(a) {
+    deleter(a)
+}), dropdowns.forEach(function(a) {
+    makeDropdown(a)
+}), toValidate.forEach(function(a) {
+    formater(a), validates(a), switchValidations(a)
+}), document.addEventListener("click", function() {
+    closeMenus(), closeDropdowns()
+});

@@ -1,0 +1,25 @@
+.msg, .inform
+  border: 1px solid
+  +border-radius(3px)
+  padding: 10px
+  position: relative
+  margin-bottom: 5px
+  +transition()
+
+  *
+    margin: 0
+
+  &.success
+    +noHoverColor($light-success, $color-default, $success)
+
+  &.danger
+    +noHoverColor($light-danger, $color-default, $danger)
+
+  &.warning
+    +noHoverColor($light-warning, $color-default, $warning)
+
+  &.info
+    +noHoverColor($light-info, $color-default, $info)
+
+.inform
+  border-left: 15px solid

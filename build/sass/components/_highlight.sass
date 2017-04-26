@@ -1,0 +1,49 @@
+.code-block
+  .key
+    color: #e06c75
+
+  .attr
+    color: #d19a66
+
+  .value
+    color: #98c379
+
+  .func
+    color: #13C0A8
+
+  .el, .tx
+    color: #ABB2BF
+
+p , li, h1, h2, h3, h4, h5, h6
+  & > code
+    color: #b3232e
+
+.dark
+  code
+    color: #e06c75
+
+.code-block
+  background-color: rgb(40, 44, 52)
+  +border-radius(5px)
+  display: block
+  margin: 15px 0
+  padding: 15px
+  text-align: left
+  overflow: auto
+
+.code-block
+  &.cmd
+    color: #abb2bf
+  &.html
+    color: #e06c75
+  &.css
+    color: #13C0A8
+
+  pre > code
+    display: inline
+
+  code
+    display: block
+    white-space: nowrap
+    span
+      color: #3F4553

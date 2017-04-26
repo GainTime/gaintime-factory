@@ -1,0 +1,45 @@
+=webkitDisplay($value)
+  display: $value
+  display: -webkit-#{$value}
+
+=border-radius($radius)
+  border-radius: $radius
+  -moz-border-radius: $radius
+  -ms-border-radius: $radius
+  -webkit-border-radius: $radius
+
+=box-shadow($string...)
+  box-shadow: $string
+  -moz-box-shadow: $string
+  -webkit-box-shadow: $string
+
+=user-select($value)
+  -webkit-user-select: $value
+  -moz-user-select: $value
+  -ms-user-select: $value
+  user-select: $value
+
+=coloredElement($bg, $color: $white, $border: $bg)
+  background-color: $bg
+  border-color: $border
+  color: $color
+  &:hover, &:focus
+    background-color: transparentize($bg, 0.3)!important
+
+=hoverBg($bg)
+  &:hover, &:focus
+    background-color: transparentize($bg, 0.3)!important
+
+=noHoverColor($bg, $color: $white, $border: $bg)
+  border-color: $border
+  background-color: $bg
+  color: $color
+
+=hoverColor($color)
+  &:hover, &:focus
+    color: $color!important
+
+=transition($transition: all, $time: 0.2s)
+  -webkit-transition: $transition $time
+  -moz-transition: $transition $time
+  transition: $transition $time
