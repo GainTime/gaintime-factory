@@ -1,3 +1,60 @@
+function makeA(a) {
+  a.addEventListener("click", function(e) {
+    var d = a.href.split("/");
+    var f = d[d.length - 1];
+    if (f.charAt(0) == '#') {
+      e.preventDefault();
+      f = f.replace(/\#/g,"");
+      var target = document.getElementById(f);
+      animate(document.scrollingElement || document.documentElement, "scrollTop", "", currentYPosition(), target.offsetTop - 60, 500, true);
+    }
+  })
+}
+
+function currentYPosition() {
+  // Firefox, Chrome, Opera, Safari
+  if (self.pageYOffset) return self.pageYOffset;
+  // Internet Explorer 6 - standards mode
+  if (document.documentElement && document.documentElement.scrollTop) return document.documentElement.scrollTop;
+  // Internet Explorer 6, 7 and 8
+  if (document.body.scrollTop) return document.body.scrollTop;
+  return 0;
+}
+
+function elmYPositioneID(id) {
+  var elm = document.getElementById(id);
+  var y = elm.offsetTop;
+  var node = elm;
+  while (node.offsetParent && node.offsetParent != document.body) {
+    node = node.offsetParent;
+    y += node.offsetTop;
+  }
+  return y;
+}
+
+function animate(elem, style, unit, from, to, time, prop) {
+    var distance = to > from ? to - from : from - to;
+    if ( distance <= 30) { return false; }
+    if (!elem) { return; }
+    var start = new Date().getTime(),
+        timer = setInterval(function () {
+            var step = Math.min(1, (new Date().getTime() - start) / time);
+            if (prop) {
+                elem[style] = (from + step * (to - from))+unit;
+            } else {
+                elem.style[style] = (from + step * (to - from))+unit;
+            }
+            if (step === 1) {
+                clearInterval(timer);
+            }
+        }, 25);
+    if (prop) {
+    	  elem[style] = from+unit;
+    } else {
+    	  elem.style[style] = from+unit;
+    }
+}
+
 function menuToggle(a) {
     var b = a.nextElementSibling;
     a.addEventListener("click", function(c) {
@@ -124,6 +181,7 @@ function cpf(a) {
     for (c = 0, i = 1; i <= 10; i++) c += parseInt(b.substring(i - 1, i)) * (12 - i);
     return d = 10 * c % 11, 10 != d && 11 != d || (d = 0), d == parseInt(b.substring(10, 11))
 }
+as = [].slice.call(document.getElementsByTagName('a')),
 closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].slice.call(document.getElementsByClassName("deleter")), bars = [].slice.call(document.getElementsByClassName("bar")), toValidate = [].slice.call(document.querySelectorAll("[data-validate]")), dropdowns = [].slice.call(document.querySelectorAll(".dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right")), menuToggles = [].slice.call(document.getElementsByClassName("menu-toggle")), tooltips = [].slice.call(document.querySelectorAll("[data-tooltip]")), tooltips.forEach(function(a) {
     tooltip(a)
 }), menuToggles.forEach(function(a) {
@@ -136,6 +194,8 @@ closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].s
     deleter(a)
 }), dropdowns.forEach(function(a) {
     makeDropdown(a)
+}), as.forEach(function(a) {
+    makeA(a)
 }), toValidate.forEach(function(a) {
     formater(a), validates(a), switchValidations(a)
 }), document.addEventListener("click", function() {
