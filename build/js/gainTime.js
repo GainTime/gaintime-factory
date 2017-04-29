@@ -124,8 +124,8 @@ function remove(a) {
 }
 
 function ask(a) {
-    a.addEventListener("click", function(a) {
-        if (!confirm(a.dataset.ask)) return a.preventDefault(), !1
+    a.addEventListener("click", function(e) {
+        if (!confirm(a.dataset.ask)) return e.preventDefault(), !1
     })
 }
 
