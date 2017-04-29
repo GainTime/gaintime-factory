@@ -123,9 +123,9 @@ function remove(a) {
     a.parentElement.removeChild(a)
 }
 
-function deleter(a) {
+function ask(a) {
     a.addEventListener("click", function(a) {
-        if (!confirm("Deseja continuar?")) return a.preventDefault(), !1
+        if (!confirm(a.dataset.ask)) return a.preventDefault(), !1
     })
 }
 
@@ -181,6 +181,7 @@ function cpf(a) {
     for (c = 0, i = 1; i <= 10; i++) c += parseInt(b.substring(i - 1, i)) * (12 - i);
     return d = 10 * c % 11, 10 != d && 11 != d || (d = 0), d == parseInt(b.substring(10, 11))
 }
+askers = [].slice.call(document.querySelectorAll("[data-ask]")),
 as = [].slice.call(document.getElementsByTagName('a')),
 closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].slice.call(document.getElementsByClassName("deleter")), bars = [].slice.call(document.getElementsByClassName("bar")), toValidate = [].slice.call(document.querySelectorAll("[data-validate]")), dropdowns = [].slice.call(document.querySelectorAll(".dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right")), menuToggles = [].slice.call(document.getElementsByClassName("menu-toggle")), tooltips = [].slice.call(document.querySelectorAll("[data-tooltip]")), tooltips.forEach(function(a) {
     tooltip(a)
@@ -196,6 +197,8 @@ closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].s
     makeDropdown(a)
 }), as.forEach(function(a) {
     makeA(a)
+}), askers.forEach(function(a) {
+    ask(a)
 }), toValidate.forEach(function(a) {
     formater(a), validates(a), switchValidations(a)
 }), document.addEventListener("click", function() {
