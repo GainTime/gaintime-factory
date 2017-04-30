@@ -58,7 +58,7 @@ function animate(elem, style, unit, from, to, time, prop) {
 function menuToggle(a) {
     var b = a.nextElementSibling;
     a.addEventListener("click", function(c) {
-        c.stopPropagation(), a.checked = !a.checked, a.checked ? b.style.maxWidth = "400px" : b.style.removeProperty("max-width")
+        c.stopPropagation(), !b.style.maxWidth ? b.style.maxWidth = "400px" : b.style.removeProperty("max-width")
     })
 }
 
