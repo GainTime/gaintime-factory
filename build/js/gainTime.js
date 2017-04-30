@@ -1,8 +1,10 @@
 function makeA(a) {
   a.addEventListener("click", function(e) {
     var d = a.href.split("/");
-    var f = d[d.length - 1];
-    if (f.charAt(0) == '#') {
+    var file = d[d.length - 1];
+    f = file.split("#")[1];
+
+    if (f != undefined) {
       e.preventDefault();
       f = f.replace(/\#/g,"");
       var target = document.getElementById(f);
@@ -58,7 +60,7 @@ function animate(elem, style, unit, from, to, time, prop) {
 function menuToggle(a) {
     var b = a.nextElementSibling;
     a.addEventListener("click", function(c) {
-        c.stopPropagation(), a.checked = !a.checked, a.checked ? b.style.maxWidth = "400px" : b.style.removeProperty("max-width")
+        c.stopPropagation(), !b.style.maxWidth ? b.style.maxWidth = "400px" : b.style.removeProperty("max-width")
     })
 }
 

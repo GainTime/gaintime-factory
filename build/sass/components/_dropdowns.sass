@@ -5,18 +5,21 @@
   margin: 15px 0
   &.btn
     &::after
-      right: -10px
-      bottom: +5px
+      right: -5px
   & > *
     display: inline-block
     vertical-align: middle
   &::after
-    content: "◣"
+    content: ""
     display: inline-block
     vertical-align: middle
-    padding: 0
+    padding: 3px
     position: relative
+    border-bottom: 2px solid
+    border-left: 2px solid
+    margin: 5px 0px 8px 3px
     +transform(rotate(-45deg))
+
   a
     text-decoration: none
 
