@@ -2,9 +2,9 @@ function makeA(a) {
   a.addEventListener("click", function(e) {
     var d = a.href.split("/");
     var file = d[d.length - 1];
-    file.split("#");
-    var f = d[d.length - 1];
-    if (f[1] != undefined) {
+    f = file.split("#")[1];
+
+    if (f != undefined) {
       e.preventDefault();
       f = f.replace(/\#/g,"");
       var target = document.getElementById(f);
