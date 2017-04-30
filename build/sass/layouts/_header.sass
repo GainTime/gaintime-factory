@@ -7,9 +7,6 @@
     top: 100%
     +transition()
 
-    [class^=dropdown] ul
-      width: 100%
-
     &:after
       clear: both
       content: ""
@@ -45,9 +42,19 @@
   & > img, nav, ul, li
     height: 100%
 
-  [class^=dropdown]
-    margin: 0 1px
+  %adjust-btn
+    margin: 0 1px!important
     height: 100%
+
+  .drop
+    &up, &down
+      &-right, &-left
+        padding: 10px 8px
+        @extend %adjust-btn
+
+  .btn
+    @extend %adjust-btn
+    padding: 6px 18px
 
   nav
     float: right
