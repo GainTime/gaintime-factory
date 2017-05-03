@@ -1,60 +1,62 @@
 function makeA(a) {
   a.addEventListener("click", function(e) {
     var d = a.href.split("/");
-    var file = d[d.length - 1];
-    f = file.split("#")[1];
+    var file = d[d.length - 1].split("#");
+    var h = document.location.toString().split("/")
+    var here = h[h.length - 1].split("#");
+    f = file[1];
 
-    if (f != undefined) {
+    if (f != undefined && (here[0] === file[0])) {
       e.preventDefault();
-      f = f.replace(/\#/g,"");
-      var target = document.getElementById(f);
-      animate(document.scrollingElement || document.documentElement, "scrollTop", "", currentYPosition(), target.offsetTop - 60, 500, true);
+      var el = document.scrollingElement || document.documentElement;
+      var to = document.getElementById(f).offsetTop - 60;
+      smoothScroll(el, to, 600);
     }
   })
 }
 
-function currentYPosition() {
-  // Firefox, Chrome, Opera, Safari
-  if (self.pageYOffset) return self.pageYOffset;
-  // Internet Explorer 6 - standards mode
-  if (document.documentElement && document.documentElement.scrollTop) return document.documentElement.scrollTop;
-  // Internet Explorer 6, 7 and 8
-  if (document.body.scrollTop) return document.body.scrollTop;
-  return 0;
-}
+var smoothScroll = function(element, target, duration) {
+    target = Math.round(target);
+    duration = Math.round(duration);
 
-function elmYPositioneID(id) {
-  var elm = document.getElementById(id);
-  var y = elm.offsetTop;
-  var node = elm;
-  while (node.offsetParent && node.offsetParent != document.body) {
-    node = node.offsetParent;
-    y += node.offsetTop;
-  }
-  return y;
-}
-
-function animate(elem, style, unit, from, to, time, prop) {
-    var distance = to > from ? to - from : from - to;
-    if ( distance <= 30) { return false; }
-    if (!elem) { return; }
-    var start = new Date().getTime(),
-        timer = setInterval(function () {
-            var step = Math.min(1, (new Date().getTime() - start) / time);
-            if (prop) {
-                elem[style] = (from + step * (to - from))+unit;
-            } else {
-                elem.style[style] = (from + step * (to - from))+unit;
-            }
-            if (step === 1) {
-                clearInterval(timer);
-            }
-        }, 25);
-    if (prop) {
-    	  elem[style] = from+unit;
-    } else {
-    	  elem.style[style] = from+unit;
+    if (duration < 0) return Promise.reject("bad duration");
+    if (duration === 0) {
+        element.scrollTop = target;
+        return Promise.resolve();
     }
+    var start_time = Date.now();
+    var end_time = start_time + duration;
+    var start_top = element.scrollTop;
+    var distance = target - start_top;
+
+    // based on http://en.wikipedia.org/wiki/Smoothstep
+    var smoothStep = function(start, end, point) {
+        if(point <= start) { return 0; }
+        if(point >= end) { return 1; }
+        var x = (point - start) / (end - start); // interpolation
+        return x*x*(3 - 2*x);
+    }
+
+    return new Promise(function(resolve, reject) {
+        var previous_top = element.scrollTop;
+        var scrollFrame = function() {
+            var now = Date.now();
+            var point = smoothStep(start_time, end_time, now);
+            var frameTop = Math.round(start_top + (distance * point));
+            element.scrollTop = frameTop;
+            if(now >= end_time) {
+                resolve();
+                return;
+            }
+            if(element.scrollTop === previous_top && element.scrollTop !== frameTop) {
+                resolve();
+                return;
+            }
+            previous_top = element.scrollTop;
+            setTimeout(scrollFrame, 0);
+        }
+        setTimeout(scrollFrame, 0);
+    });
 }
 
 function menuToggle(a) {
