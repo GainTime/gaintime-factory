@@ -34,11 +34,6 @@ select
   &[type=checkbox], &[type=radio]
     @extend %checkers
 
-.vertical-list
-  & > *
-    display: block
-    margin: 5px 0
-
 %gt-form
 
   small
@@ -47,7 +42,7 @@ select
   input[type=checkbox], input[type=radio]
     @extend %checkers
 
-  input[type=text], input[type=password], input[type=email], select, textarea
+  input[type=text], input[type=number], input[type=password], input[type=email], select, textarea
     @extend %field
 
   textarea
@@ -58,13 +53,13 @@ select
 
 .gt-form
   max-width: 500px
-  input[type=text], input[type=password], input[type=email], select, textarea, small
+  label, input[type=text], input[type=number], input[type=password], input[type=email], select, textarea, small
     display: block
     width: 100%
 
 @media (min-width: 769px)
   .gt-form-inline
-    *
+    *:not(option)
       display: inline-block !important
       vertical-align: middle !important
       width: auto !important
