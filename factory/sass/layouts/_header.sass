@@ -15,6 +15,8 @@
       padding: 0
       display: inline
       background-color: $base
+      .btn, .action, .tag
+        margin: 2px 0
 
       & > li, & > a, & > a > li
         width: 100%
@@ -22,7 +24,7 @@
         &.active
           background-color: #ebeef0
           border-color: transparent!important
-        &:hover
+        &:hover:not(.tag)
           background-color: #d1d5da
           border-color: transparent!important
 
@@ -57,7 +59,7 @@
 
   .btn
     @extend %adjust-btn
-    padding: 6px 18px
+    padding: 8px 18px
 
   nav
     float: right
@@ -87,7 +89,7 @@
         top: -5px
         right: -2px
 
-    &:hover, &.active
+    &:hover:not(.btn):not(.action):not(.tag), &.active:not(.btn):not(.action):not(.tag)
       border-color: $default
 
   .menu-toggle
