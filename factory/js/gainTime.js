@@ -83,7 +83,7 @@ function makeDropdown(a) {
 function toogleDropdown(a) {
     var b = a.getElementsByTagName("ul")[0],
         c = !!b.style.display;
-    closeDropdowns(), c ? b.style.removeProperty("display") : b.style.display = "inline-table"
+    closeDropdowns(), c ? b.style.removeProperty("display") : b.style.display = "list-item"
 }
 
 function closeDropdowns() {
