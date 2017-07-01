@@ -88,7 +88,7 @@ function ask(e) {
 }
 
 function formater(e) {
-    e.addEventListener("keypress", function(t) {
+    e.addEventListener("keydown", function(t) {
         switch (e.dataset.validate) {
             case "cpf":
                 formatCpf(e, t)
@@ -97,7 +97,7 @@ function formater(e) {
 }
 
 function formatCpf(e, t) {
-    8 != t.keyCode && 46 != t.keyCode && (3 != e.value.length && 7 != e.value.length || (e.value = e.value + "."), 11 == e.value.length && (e.value = e.value + "-"))
+    0 != t.keyCode && 8 != t.keyCode && 46 != t.keyCode && (3 != e.value.length && 7 != e.value.length || (e.value = e.value + "."), 11 == e.value.length && (e.value = e.value + "-"))
 }
 
 function validates(e) {
@@ -118,15 +118,23 @@ function switchValidations(e) {
             searcher(e, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/);
             break;
         case "cpf":
-            cpf(e) || "" == e.value ? e.style.removeProperty("border") : e.style.border = "1px solid #F00";
+            cpf(e) || "" == e.value ? validsIt(e) : invalidsIt(e, "Este CPF é inválido.");
             break;
         default:
             searcher(e, new RegExp(e.dataset.validate))
     }
 }
 
+function invalidsIt(a, b) {
+    a.style.border = '1px solid #F00', (b)? a.setCustomValidity(b) : a.setCustomValidity("Invalid field.");
+}
+
+function validsIt(a) {
+    a.style.removeProperty("border"), a.setCustomValidity("");
+}
+
 function searcher(e, t) {
-    null == e.value.match(t) ? e.style.border = "1px solid #F00" : e.style.removeProperty("border")
+    null == e.value.match(t) ? invalidsIt(e, false) : validsIt(e)
 }
 
 function cpf(e) {
