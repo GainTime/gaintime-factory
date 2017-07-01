@@ -91,13 +91,21 @@ function formater(e) {
     e.addEventListener("keydown", function(t) {
         switch (e.dataset.validate) {
             case "cpf":
-                formatCpf(e, t)
+                formatCpf(e, t);
+                break;
+            case "cnpj":
+                formatCnpj(e, t);
+                break;
         }
     })
 }
 
 function formatCpf(e, t) {
     0 != t.keyCode && 8 != t.keyCode && 46 != t.keyCode && (3 != e.value.length && 7 != e.value.length || (e.value = e.value + "."), 11 == e.value.length && (e.value = e.value + "-"))
+}
+
+function formatCnpj(e, t) {
+    0 != t.keyCode && 8 != t.keyCode && 46 != t.keyCode && (2 != e.value.length && 6 != e.value.length || (e.value = e.value + "."), 10 == e.value.length && (e.value = e.value + "/"), 15 == e.value.length && (e.value = e.value + "-"))
 }
 
 function validates(e) {
@@ -118,7 +126,10 @@ function switchValidations(e) {
             searcher(e, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/);
             break;
         case "cpf":
-            cpf(e) || "" == e.value ? validsIt(e) : invalidsIt(e, "Este CPF é inválido.");
+            cpf(e.value) || "" == e.value ? validsIt(e) : invalidsIt(e, "Este CPF é inválido.");
+            break;
+        case "cnpj":
+            cnpj(e.value) || "" == e.value ? validsIt(e) : invalidsIt(e, "Este CNPJ é inválido.");
             break;
         default:
             searcher(e, new RegExp(e.dataset.validate))
@@ -138,7 +149,7 @@ function searcher(e, t) {
 }
 
 function cpf(e) {
-    var t = e.value.replace(/\./g, "");
+    var t = e.replace(/\./g, "");
     t = t.replace(/\-/g, "");
     var o, n;
     if (o = 0, "00000000000" == t) return !1;
@@ -146,6 +157,16 @@ function cpf(e) {
     if (n = 10 * o % 11, 10 != n && 11 != n || (n = 0), n != parseInt(t.substring(9, 10))) return !1;
     for (o = 0, i = 1; i <= 10; i++) o += parseInt(t.substring(i - 1, i)) * (12 - i);
     return n = 10 * o % 11, 10 != n && 11 != n || (n = 0), n == parseInt(t.substring(10, 11))
+}
+
+function cnpj(u) {
+    if (u = u.replace(/[^\d]+/g, ""), "" == u) return !1;
+    if (14 != u.length) return !1;
+    if ("00000000000000" == u || "11111111111111" == u || "22222222222222" == u || "33333333333333" == u || "44444444444444" == u || "55555555555555" == u || "66666666666666" == u || "77777777777777" == u || "88888888888888" == u || "99999999999999" == u) return !1;
+    for (n = u.substring(0, 12), d = u.substring(12), t = 12, s = 0, p = 5, i = t; i >= 1; i--) s += n.charAt(t - i) * p--, p < 2 && (p = 9);
+    if (r = s % 11 < 2 ? 0 : 11 - s % 11, r != d.charAt(0)) return !1;
+    for (n = u.substring(0, 13), t = 13, s = 0, p = 6, i = t; i >= 1; i--) s += n.charAt(t - i) * p--, p < 2 && (p = 9);
+    return r = s % 11 < 2 ? 0 : 11 - s % 11, r != d.charAt(1) ? !1 : !0
 }
 
 function closeModal(e) {
