@@ -27,14 +27,15 @@ body
   section
     @extend %container
 
+.container
+  @extend %container
+
 section
   width: 100%
   padding: 30px 5%
   margin: 0
   background-color: $base
   +box-shadow(unset)
-  &.container
-    @extend %container
   &::after
     clear: both
     content: ""

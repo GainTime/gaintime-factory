@@ -25,6 +25,8 @@
   @extend %flex
   align-items: stretch
 
+  &.wrap, .wrap-auto
+    flex-wrap: wrap
   &.vertical
     flex-direction: column
     -webkit-flex-direction: column
@@ -41,7 +43,8 @@
     -ms-flex-negative: 1
     flex-shrink: 1
     padding: 0.75rem
-
+  &.wrap-auto .col
+    flex-basis: auto
 @media (max-width: 768px)
   .flex-box
     display: block!important

@@ -26,6 +26,7 @@ GainTime é um novo framework de HTML, CSS e JS para desenvolvimento de projetos
 │       │   ├── _colors.sass
 │       │   ├── _garnishes.sass
 │       │   ├── _grid-visibility.sass
+│       │   ├── _grid.sass
 │       │   ├── _singles.sass
 │       │   └── _text.sass
 │       ├── layouts

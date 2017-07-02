@@ -1,0 +1,52 @@
+[data-modal]
+  cursor: pointer
+
+.modal
+  max-width: 500px
+
+.gt-modal
+  position: fixed
+  width: 100%
+  height: 100%
+  left: 0
+  top: 0
+  background: transparentize(#000, 0.3)
+  margin: 0
+  z-index: 10
+  display: none
+  overflow-x: hidden
+  overflow-y: auto
+
+  .modal
+    width: 90%
+    padding: 30px
+    background-color: #FFF
+    margin: 30px auto
+    position: relative
+    overflow: hidden
+    +border-radius(3px)
+    &-close
+      font-size: 35px
+      position: absolute
+      top: 15px
+      right: 14px
+      z-index: 15
+      background-color: #FFF
+      border: none
+      line-height: 1
+      +transition()
+      &:hover
+        color: #AAA
+    &-body
+      overflow-y: auto
+      max-height: calc(100% - 120px)
+
+      &.gallery
+        width: 100%
+        height: 100%
+        img
+          width: auto
+          height: 98%
+          margin: 0 auto
+          max-width: 100%
+          text-align: center
