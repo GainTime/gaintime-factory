@@ -77,11 +77,12 @@
       text-decoration: none
       color: inherit
 
+  li:not(.btn):not(.action):not(.tag)
+    border-bottom: 2px solid transparent
   li
     cursor: pointer
     padding: 10px 8px
     margin: 0 1px
-    border-bottom: 2px solid transparent
     +transition()
 
     &.dropdown
