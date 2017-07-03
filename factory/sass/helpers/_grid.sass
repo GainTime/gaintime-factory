@@ -30,82 +30,21 @@ $columns: 12
 
 =col-factory($param, $abr)
   @media ($param)
-    .#{$abr}-12
-      width: calc(100% - 10px)
-    .#{$abr}-11
-      width: calc(91.667% - 10px)
-    .#{$abr}-10
-      width: calc(83.333% - 10px)
-    .#{$abr}-9
-      width: calc(75% - 10px)
-    .#{$abr}-8
-      width: calc(66.667% - 10px)
-    .#{$abr}-7
-      width: calc(58.334% - 10px)
-    .#{$abr}-6
-      width: calc(50% - 10px)
-    .#{$abr}-5
-      width: calc(41.666% - 10px)
-    .#{$abr}-4
-      width: calc(33.333% - 10px)
-    .#{$abr}-3
-      width: calc(25% - 10px)
-    .#{$abr}-2
-      width: calc(16.6666666667% - 10px)
-    .#{$abr}-1
-      width: calc(8.333% - 10px)
-
-    .off-#{$abr}-11
-      margin-left: calc(91.667% + 5px)
-    .off-#{$abr}-10
-      margin-left: calc(83.333% + 5px)
-    .off-#{$abr}-9
-      margin-left: calc(75% + 5px)
-    .off-#{$abr}-8
-      margin-left: calc(66.667% + 5px)
-    .off-#{$abr}-7
-      margin-left: calc(58.334% + 5px)
-    .off-#{$abr}-6
-      margin-left: calc(50% + 5px)
-    .off-#{$abr}-5
-      margin-left: calc(41.666% + 5px)
-    .off-#{$abr}-4
-      margin-left: calc(33.333% + 5px)
-    .off-#{$abr}-3
-      margin-left: calc(25% + 5px)
-    .off-#{$abr}-2
-      margin-left: calc(16.6666666667% + 5px)
-    .off-#{$abr}-1
-      margin-left: calc(8.333% + 5px)
+    @for $i from 1 through $columns
+      $num: $i / 12 * 100
+      .#{$abr}-#{$i}
+        width: calc(#{$num}% - 10px)
+      .off-#{$abr}-#{$i}
+        margin-left: calc(#{$num}% + 5px)
     .off-#{$abr}-0
       margin-left: 5px
 
 =col-factory-to-false-gutter($param, $abr)
   @media ($param)
-    .#{$abr}-12
-      width: 100%
-    .#{$abr}-11
-      width: 91.667%
-    .#{$abr}-10
-      width: 83.333%
-    .#{$abr}-9
-      width: 75%
-    .#{$abr}-8
-      width: 66.667%
-    .#{$abr}-7
-      width: 58.334%
-    .#{$abr}-6
-      width: 50%
-    .#{$abr}-5
-      width: 41.666%
-    .#{$abr}-4
-      width: 33.333%
-    .#{$abr}-3
-      width: 25%
-    .#{$abr}-2
-      width: 16.6666666667%
-    .#{$abr}-1
-      width: 8.333%
+    @for $i from 1 through $columns
+      $num: percentage($i / 12)
+      .#{$abr}-#{$i}
+        width: $num
 
 +col-factory("min-width: 0px", xs)
 +col-factory("min-width: 769px", sm)
