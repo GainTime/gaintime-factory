@@ -18,7 +18,7 @@
       .btn, .action, .tag
         margin: 2px 0
 
-      & > li, & > a, & > a > li
+      & > li
         width: 100%
         display: inline-block
         &.active
@@ -80,10 +80,16 @@
   li:not(.btn):not(.action):not(.tag)
     border-bottom: 2px solid transparent
   li
-    cursor: pointer
-    padding: 10px 8px
+    padding: 0
     margin: 0 1px
     +transition()
+
+    & > a
+      display: block
+      height: 100%
+      text-decoration: none
+      color: inherit
+      padding: 10px 8px
 
     &.dropdown
       &::after
