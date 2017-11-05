@@ -45,11 +45,15 @@
     height: auto
 
     li
+      position: relative
       padding: 5px 10px
       border: none!important
       color: $color-default
-      &:hover
+      &:hover, &:focus, & > a:focus
         background-color: #d1d5da
+    li > a
+      display: block
+      position: relative
 
 .dropdown-right, .dropup-right
   @extend %drop
