@@ -186,6 +186,7 @@ function cnpj(u) {
 function closeModal(e) {
     e.addEventListener("click", function(t) {
         t.stopPropagation(), e.parentElement.parentElement.removeAttribute("style")
+        document.getElementsByTagName('body')[0].style.overflow = ""
     })
 }
 var smoothScroll = function(e, t, o) {
@@ -236,15 +237,17 @@ gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = 
     closeMenus(), closeDropdowns()
 }), gtModals.forEach(function(e) {
     e.addEventListener("click", function(t) {
-        "gt-modal" == t.target.className && e.removeAttribute("style")
+        "gt-modal" == t.target.className && e.removeAttribute("style"); document.getElementsByTagName('body')[0].style.overflow = ""
     })
 }), document.addEventListener("keypress", function(e) {
     27 == e.keyCode && gtModals.forEach(function(e) {
         e.removeAttribute("style")
+        document.getElementsByTagName('body')[0].style.overflow = ""
     })
 }), modals.forEach(function(e) {
     e.addEventListener("click", function(t) {
         var o = document.getElementById(e.dataset.modal);
         o.parentElement.style.display = "block"
+        document.getElementsByTagName('body')[0].style.overflow = "hidden"
     })
 });
