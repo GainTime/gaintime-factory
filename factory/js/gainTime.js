@@ -385,7 +385,10 @@ gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = 
   closeMenus(), closeDropdowns()
 }), gtModals.forEach(function(e) {
   e.addEventListener("click", function(t) {
-    "gt-modal" == t.target.className && e.removeAttribute("style"); document.getElementsByTagName('body')[0].style.overflow = ""
+    if ("gt-modal" == t.target.className) {
+      e.removeAttribute("style")
+      document.getElementsByTagName('body')[0].style.overflow = ""
+    }
   })
 }), document.addEventListener("keypress", function(e) {
   27 == e.keyCode && gtModals.forEach(function(e) {
@@ -395,7 +398,25 @@ gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = 
 }), modals.forEach(function(e) {
   e.addEventListener("click", function(t) {
     var o = document.getElementById(e.dataset.modal);
+
     o.parentElement.style.display = "block"
     document.getElementsByTagName('body')[0].style.overflow = "hidden"
+    var focusable = [].slice.call(o.querySelectorAll('button, [href], input, select, textarea, [tabindex]'));
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    first.focus()
+
+    first.addEventListener("keypress", function(e) {
+      if (e.shiftKey && e.key == "Tab") {
+        e.preventDefault();
+        last.focus();
+      }
+    })
+    last.addEventListener("keypress", function(e) {
+      if (!e.shiftKey && e.key == "Tab")  {
+        e.preventDefault();
+        first.focus()
+      }
+    })
   })
 });
