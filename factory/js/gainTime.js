@@ -331,10 +331,8 @@ function validateCnpj(u) {
 }
 
 function closeModal(e) {
-  e.addEventListener("click", function(t) {
-    t.stopPropagation(), e.parentElement.parentElement.removeAttribute("style")
-    document.getElementsByTagName('body')[0].style.overflow = ""
-  })
+  e.removeAttribute("style")
+  document.getElementsByTagName('body')[0].style.overflow = ""
 }
 
 var smoothScroll = function(e, t, o) {
@@ -361,7 +359,7 @@ var smoothScroll = function(e, t, o) {
     setTimeout(c, 0)
   })
 };
-gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = [].slice.call(document.querySelectorAll("[data-modal]")), closeModals = [].slice.call(document.getElementsByClassName("modal-close")), askers = [].slice.call(document.querySelectorAll("[data-ask]")), as = [].slice.call(document.getElementsByTagName("a")), closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].slice.call(document.getElementsByClassName("deleter")), bars = [].slice.call(document.getElementsByClassName("bar")), toValidate = [].slice.call(document.querySelectorAll("[data-validate]")), dropdowns = [].slice.call(document.querySelectorAll(".dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right")), menuToggles = [].slice.call(document.getElementsByClassName("menu-toggle")), tooltips = [].slice.call(document.querySelectorAll("[data-tooltip]")), tooltips.forEach(function(e) {
+gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = [].slice.call(document.querySelectorAll("[data-modal]")), askers = [].slice.call(document.querySelectorAll("[data-ask]")), as = [].slice.call(document.getElementsByTagName("a")), closes = [].slice.call(document.getElementsByClassName("close")), deletes = [].slice.call(document.getElementsByClassName("deleter")), bars = [].slice.call(document.getElementsByClassName("bar")), toValidate = [].slice.call(document.querySelectorAll("[data-validate]")), dropdowns = [].slice.call(document.querySelectorAll(".dropdown, .dropdown-right, .dropdown-left, .dropup, .dropup-left, .dropup-right")), menuToggles = [].slice.call(document.getElementsByClassName("menu-toggle")), tooltips = [].slice.call(document.querySelectorAll("[data-tooltip]")), tooltips.forEach(function(e) {
   tooltip(e)
 }), menuToggles.forEach(function(e) {
   menuToggle(e)
@@ -379,15 +377,13 @@ gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = 
   ask(e)
 }), toValidate.forEach(function(e) {
   formater(e), validates(e), switchValidations(e)
-}), closeModals.forEach(function(e) {
-  closeModal(e)
 }), document.addEventListener("click", function() {
   closeMenus(), closeDropdowns()
 }), gtModals.forEach(function(e) {
   e.addEventListener("click", function(t) {
-    if ("gt-modal" == t.target.className) {
-      e.removeAttribute("style")
-      document.getElementsByTagName('body')[0].style.overflow = ""
+    t.stopPropagation();
+    if (-1 < t.target.className.indexOf("gt-modal") || -1 < t.target.className.indexOf("modal-close")) {
+      closeModal(e);
     }
   })
 }), document.addEventListener("keypress", function(e) {
