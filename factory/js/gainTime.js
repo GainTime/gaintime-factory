@@ -101,59 +101,72 @@ function ask(e) {
   })
 }
 
-function formater(e, text) {
+function preformat(e, text) {
   var n = text ? e.textContent: e.value;
+
   var a = "";
+  var s = text ? text: e.dataset.validate;
   if (n) {
-    switch (e.dataset.validate) {
+    switch (s) {
       case "cpf":
-        a = preformatCpf(e, n);
-        break;
+      a = preformatCpf(n);
+      break;
       case "cnpj":
-        a = preformatCnpj(e, n);
-        break;
+      a = preformatCnpj(n);
+      break;
       case "brPhone":
-        a = preformatPhone(e, n);
-        break;
+      a = preformatPhone(n);
+      break;
       case "cep":
-        a = preformatCep(e, n);
-        break;
+      a = preformatCep(n);
+      break;
       case "date":
-        a = preformatDate(e, n);
-        break;
+      a = preformatDate(n);
+      break;
     }
     text && (e.innerHTML = a), e.value = a
   } else text ? e.textContent = "": e.value = ""
+}
 
-  if (!text) {
-    e.addEventListener("keyup", function(t) {
-      switch (e.dataset.validate) {
-        case "date":
-          formatDate(e, t);
-          break;
-      }
-    })
+function formater(e) {
+  preformat(e);
 
-    e.addEventListener("keydown", function(t) {
-      switch (e.dataset.validate) {
-        case "cpf":
-          formatCpf(e, t);
-          break;
-        case "cnpj":
-          formatCnpj(e, t);
-          break;
-        case "brPhone":
-          formatBrPhone(e, t);
-          break;
-        case "cep":
-          formatCep(e, t);
-          break;
-        case "date":
-          onlyNumbers(t);
-          break;
-      }
-    })
-  }
+  e.addEventListener("keyup", function(t) {
+    switch (e.dataset.validate) {
+      case "date":
+        if (isPaste(e, t)) preformat(e)
+        else formatDate(e, t);
+        break;
+      default:
+        if (isPaste(e, t)) preformat(e)
+        break;
+    }
+  })
+
+  e.addEventListener("keydown", function(t) {
+    switch (e.dataset.validate) {
+      case "cpf":
+        formatCpf(e, t);
+        break;
+      case "cnpj":
+        formatCnpj(e, t);
+        break;
+      case "brPhone":
+        formatBrPhone(e, t);
+        break;
+      case "cep":
+        formatCep(e, t);
+        break;
+      case "date":
+        onlyNumbers(t);
+        break;
+    }
+  })
+
+}
+
+function isPaste(e, t) {
+    return (t.ctrlKey && t.keyCode == 86)
 }
 
 function onlyNumbers(t) {
@@ -167,38 +180,43 @@ function ctrlButtons(t) {
   return 0 != t.keyCode && 8 != t.keyCode && 46 != t.keyCode;
 }
 
-function preformatPhone(e, n, t){
-  s2 = ("" + n).replace(/\D/g,"");
-  if (s2.length == 10) {
-    m = s2.match(/^(\d{2})?[- ]??[\s]?(\d{4})?[\s]?(\d{4})?(.*)?$/);
+function preformatPhone(n) {
+  var s2 = ("" + n).replace(/\D/g,"");
+  if (s2.length <= 10) {
+    m = s2.match(/^(\d{1,2})?[- ]?(\d{1,4})?(\d{1,4})?(.*)?$/);
   } else {
-    m = s2.match(/^(\d{2})?[- ]??[\s]?(\d{5})?[\s]?(\d{4})?(.*)?$/);
+    m = s2.match(/^(\d{1,2})?[- ]?(\d{1,5})?(\d{1,4})?(.*)?$/);
   }
 
+  for (var i = 1; i <= 3; i++) if (!m[i]) m[i] = "";
   return m ? "(" + m[1] + ") " + m[2] + "-" + m[3] : null;
 }
 
-function preformatCpf(e, n, t){
+function preformatCpf(n) {
   s2 = ("" + n).replace(/\D/g,"");
-  m = s2.match(/^(\d{3})?[- ]??[\s]?(\d{3})?[\s]?(\d{3})?(.*)?$/);
+  m = s2.match(/^(\d{1,3})?[- ]??[\s]?(\d{1,3})?[\s]?(\d{1,3})?(.*)?$/);
+  for (var i = 1; i <= 4; i++) if (!m[i]) m[i] = "";
   return m ? m[1] + "." + m[2] + "." + m[3] + "-" + m[4] : null;
 }
 
-function preformatCnpj(e, n, t){
+function preformatCnpj(n) {
   s2 = ("" + n).replace(/\D/g,"");
-  m = s2.match(/^(\d{2})?[- ]??[\s]?(\d{3})?[\s]?(\d{3})?(\d{4})?(\d{2})?(.*)?$/);
+  m = s2.match(/^(\d{1,2})?[- ]??[\s]?(\d{1,3})?[\s]?(\d{1,3})?(\d{1,4})?(\d{1,2})?(.*)?$/);
+  for (var i = 1; i <= 5; i++) if (!m[i]) m[i] = "";
   return m ? m[1] + "." + m[2] + "." + m[3] + "/" + m[4] + "-" + m[5] : null;
 }
 
-function preformatCep(e, n, t){
+function preformatCep(n) {
   s2 = ("" + n).replace(/\D/g,"");
-  m = s2.match(/^(\d{5})?[- ]??[\s]?(\d{3})?(.*)?$/);
+  m = s2.match(/^(\d{1,5})?[- ]??[\s]?(\d{1,3})?(.*)?$/);
+  for (var i = 1; i <= 2; i++) if (!m[i]) m[i] = "";
   return m ? m[1] + "-" + m[2]: null;
 }
 
-function preformatDate(e, n, t){
+function preformatDate(n) {
   s2 = ("" + n).replace(/\D/g,"");
-  m = s2.match(/^(\d{2})?[- ]??[\s]?(\d{2})?(.*)?$/);
+  m = s2.match(/^(\d{1,2})?[- ]??[\s]?(\d{1,2})?(.*)?$/);
+  for (var i = 1; i <= 3; i++) if (!m[i]) m[i] = "";
   return m ? m[1] + "/" + m[2] + "/" + m[3]: null;
 }
 
@@ -230,6 +248,7 @@ function formatDate(e, t) {
 
 function validates(e) {
   e.addEventListener("blur", function(t) {
+    formater(e)
     switchValidations(e)
   })
 }
@@ -389,7 +408,7 @@ gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = 
       closeModal(e);
     }
   })
-}), document.addEventListener("keypress", function(e) {
+}), document.addEventListener("keydown", function(e) {
   27 == e.keyCode && gtModals.forEach(function(e) {
     e.removeAttribute("style")
     document.getElementsByTagName('body')[0].style.overflow = ""
