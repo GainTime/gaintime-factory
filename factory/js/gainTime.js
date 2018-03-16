@@ -137,17 +137,20 @@ function formater(e, text) {
     e.addEventListener("keydown", function(t) {
       switch (e.dataset.validate) {
         case "cpf":
-        formatCpf(e, t);
-        break;
+          formatCpf(e, t);
+          break;
         case "cnpj":
-        formatCnpj(e, t);
-        break;
+          formatCnpj(e, t);
+          break;
         case "brPhone":
-        formatBrPhone(e, t);
-        break;
+          formatBrPhone(e, t);
+          break;
         case "cep":
-        formatCep(e, t);
-        break;
+          formatCep(e, t);
+          break;
+        case "date":
+          onlyNumbers(t);
+          break;
       }
     })
   }
