@@ -424,13 +424,13 @@ gtModals = [].slice.call(document.getElementsByClassName("gt-modal")), modals = 
     var last = focusable[focusable.length - 1];
     first.focus()
 
-    first.addEventListener("keypress", function(e) {
+    first.addEventListener("keydown", function(e) {
       if (e.shiftKey && e.key == "Tab") {
         e.preventDefault();
         last.focus();
       }
     })
-    last.addEventListener("keypress", function(e) {
+    last.addEventListener("keydown", function(e) {
       if (!e.shiftKey && e.key == "Tab")  {
         e.preventDefault();
         first.focus()
