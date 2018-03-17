@@ -9,16 +9,19 @@ GainTime é um novo framework de HTML, CSS e JS para desenvolvimento de projetos
 │   │   └── gainTime.js
 │   └── sass
 │       ├── components
-│       │   ├── _auth.sass
 │       │   ├── _badges.sass
+│       │   ├── _banner.sass
 │       │   ├── _buttons.sass
+│       │   ├── _cards.sass
 │       │   ├── _dropdowns.sass
 │       │   ├── _forms.sass
 │       │   ├── _graphs.sass
 │       │   ├── _highlight.sass
+│       │   ├── _modals.sass
 │       │   ├── _msgs.sass
 │       │   ├── _tags.sass
-│       │   └── _tooltips.sass
+│       │   ├── _tooltips.sass
+│       │   └── _vertical-list.sass
 │       ├── config
 │       │   ├── _mixins.sass
 │       │   └── _variables.sass

@@ -1,0 +1,45 @@
+.card
+  position: relative
+  display: -webkit-box
+  display: -ms-flexbox
+  display: flex
+  -webkit-box-orient: vertical
+  -webkit-box-direction: normal
+  -ms-flex-direction: column
+  flex-direction: column
+  min-width: 0
+  word-wrap: break-word
+  background-color: #fff
+  background-clip: border-box
+  border: 1px solid rgba(0,0,0,.125)
+  +border-radius(3px)
+  margin-bottom: 15px
+  color: #494d55!important
+  transition: all .2s
+  overflow: hidden
+
+.card-img
+  width: 100%
+  background-size: 100%
+  background-repeat: no-repeat
+  overflow: hidden
+
+  img
+    width: 100%
+    border-bottom: 1px solid #f0f0f0
+
+.card-body
+  -webkit-box-flex: 1
+  -ms-flex: 1 1 auto
+  flex: 1 1 auto
+  padding: 1.25rem
+
+.card-title
+  margin-bottom: .75rem
+  font-size: 18px
+  font-weight: 700
+  margin-top: 10px
+  text-overflow: ellipsis
+  overflow: hidden
+  white-space: nowrap
+  text-transform: capitalize

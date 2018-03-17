@@ -1,9 +1,6 @@
 [data-modal]
   cursor: pointer
 
-.modal
-  max-width: 500px
-
 .gt-modal
   position: fixed
   width: 100%
@@ -19,13 +16,15 @@
 
   .modal
     width: 90%
-    padding: 30px
     background-color: #FFF
+    color: $color-default
     margin: 30px auto
     position: relative
     overflow: hidden
+    max-width: 600px
+    padding: 30px
     +border-radius(3px)
-    &-close
+    > .modal-close
       font-size: 35px
       position: absolute
       top: 15px
@@ -37,6 +36,12 @@
       +transition()
       &:hover
         color: #AAA
+    &-header
+      border-bottom: 1px solid #e5e5e5
+
+    &-footer
+      border-top: 1px solid #e5e5e5
+
     &-body
       overflow-y: auto
       max-height: calc(100% - 120px)
