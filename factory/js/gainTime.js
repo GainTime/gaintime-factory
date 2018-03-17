@@ -103,8 +103,7 @@ function ask(e) {
 
 function preformat(e, text) {
   var n = text ? e.textContent: e.value;
-
-  var a = "";
+  var a = n;
   var s = text ? text: e.dataset.validate;
   if (n) {
     switch (s) {
@@ -160,6 +159,12 @@ function formater(e) {
       case "date":
         onlyNumbers(t);
         break;
+      case "num":
+        onlyNumbers(t);
+        break;
+      case "text":
+        blockNum(t);
+        break;
     }
   })
 
@@ -171,6 +176,13 @@ function isPaste(e, t) {
 
 function onlyNumbers(t) {
   if (isNaN(t.key) && ctrlButtons(t) && !t.ctrlKey && t.key != "Tab" && t.key != "ArrowLeft" && t.key != "ArrowRight" && t.key != "ArrowDown" && t.key != "ArrowUp" && t.key != "Enter" || " " == t.key) {
+    t.preventDefault();
+    return false;
+  }
+}
+
+function blockNum(t) {
+  if (!isNaN(t.key) && 0 != t.keyCode && 8 != t.keyCode && 46 != t.keyCode && !t.ctrlKey && t.key != "Tab" && t.key != "ArrowLeft" && t.key != "ArrowRight" && t.key != "ArrowDown" && t.key != "ArrowUp" && t.key != "Enter" && " " != t.key) {
     t.preventDefault();
     return false;
   }
@@ -260,9 +272,6 @@ function switchValidations(e) {
       break;
     case "num":
       searcher(e, /^[\d]*$/g);
-      break;
-    case "email":
-      searcher(e, /^(([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+(\.([A-Za-z]{2,4}))*)*$/);
       break;
     case "cpf":
       validateCpf(e.value) || "" == e.value ? validsIt(e) : invalidsIt(e, "Este CPF é inválido.");

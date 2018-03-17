@@ -17,24 +17,18 @@ body
   position: absolute
   > footer, main > footer
     padding: 15px 5%
-    
+
 article, aside, nav, section
   h1
     font-size: 2em
 
-%container
+.container
   margin: 30px auto
   padding: 30px
   width: calc(100% - 10%)
   +box-shadow (0 1px 1px 0 rgba(0,0,0,0.06),0 2px 5px 0 rgba(0,0,0,0.2))
-.painel
-  section
-    @extend %container
 
-.container
-  @extend %container
-
-body > section, .gt-section
+body > section, main > section, .gt-section
   width: 100%
   padding: 30px 5%
   margin: 0
