@@ -71,13 +71,13 @@ Bons Pull Requests - patches, melhorias, novos recursos - são sensacionais e s�
 
 Por favor, siga as diretrizes de codificação usadas em todo o projeto (indentação, comentários precisos, etc.) e quaisquer outros requisitos.
 
-** Não adicione arquivos `.css` ** Esses arquivos são gerados automaticamente. Você deve editar os arquivos fonte (sass). Da mesma forma, ao contribuir com a documentação do GainTime, você deve editar o arquivos de origem da documentação.
+**Não adicione arquivos `.css`** Esses arquivos são gerados automaticamente. Você deve editar os arquivos fonte (sass). Da mesma forma, ao contribuir com a documentação do GainTime, você deve editar o arquivos de origem da documentação.
 
-** Não edite a branch `gh-pages`. **.
+**Não edite a branch `gh-pages`.**.
 
 Aderir ao seguinte processo é a melhor maneira de obter o seu trabalho incluído no projeto:
 
-1. [Fork] (https://help.github.com/fork-a-repo/) o projeto, clone seu fork, e configure os controles remotos:
+1. [Fork](https://help.github.com/fork-a-repo/) o projeto, clone seu fork, e configure os controles remotos:
 
    ```bash
    # Clone seu fork
@@ -135,8 +135,8 @@ Aderir ao seguinte processo é a melhor maneira de obter o seu trabalho incluíd
 - Utilize 2 espaços (sem tab)
 - Inicie os arquivos que não são o run.sass com _
 - Utilize o inglês apra nomear seus arquivos
-- Quando possível, as paletas de cores padrão devem estar em conformidade com [Diretrizes de contraste de cores WCAG] (http://www.w3.org/TR/WCAG20/#visual-audio-contrast).
-- Exceto em casos raros, não remova os estilos `: focus` padrão (por exemplo,` outline: none; `) sem fornecer estilos alternativos. Veja [este post do Projeto A11Y] (http://a11yproject.com/posts/never-remove-css-outlines) para mais detalhes.
+- Quando possível, as paletas de cores padrão devem estar em conformidade com [Diretrizes de contraste de cores WCAG](http://www.w3.org/TR/WCAG20/#visual-audio-contrast).
+- Exceto em casos raros, não remova os estilos `: focus` padrão (por exemplo,` outline: none; `) sem fornecer estilos alternativos. Veja [este post do Projeto A11Y](http://a11yproject.com/posts/never-remove-css-outlines) para mais detalhes.
 
 ### JS
 
