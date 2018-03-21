@@ -111,13 +111,13 @@ Aderir ao seguinte processo é a melhor maneira de obter o seu trabalho incluíd
 
 6. Envie sua branch de tópico para o seu fork:
 
-   `` `bash
+   ```bash
    git push origin <nome-branch-tópico>
-   `` `
+   ```
 
 7. [Abra um pull request](https://help.github.com/articles/using-pull-requests/) com um título e uma descrição claros na branch `dev`.
 
-** IMPORTANTE **: Ao enviar um patch, você concorda em permitir que os proprietários do projeto licenciem seu trabalho sob os termos da [Licença MIT](https://opensource.org/licenses/mit-license.php) (se inclui mudanças de código) e sob os termos do [Licença Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) (se incluir mudanças de documentação).
+**IMPORTANTE**: Ao enviar um patch, você concorda em permitir que os proprietários do projeto licenciem seu trabalho sob os termos da [Licença MIT](https://opensource.org/licenses/mit-license.php) (se inclui mudanças de código) e sob os termos do [Licença Creative Commons Attribution 3.0 Unported](https://creativecommons.org/licenses/by/3.0/) (se incluir mudanças de documentação).
 
 
 ## Diretrizes do código
@@ -130,6 +130,7 @@ Aderir ao seguinte processo é a melhor maneira de obter o seu trabalho incluíd
 - Use os atributos [WAI-ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) em exemplos de documentação para promover a acessibilidade.
 
 ### SASS
+
 - Utilize sempre o inglês para nomear seus seletores
 - Utilize palavras específicas o suficiente para que seu papel seja claro.
 - Utilize 2 espaços (sem tab)
@@ -141,8 +142,9 @@ Aderir ao seguinte processo é a melhor maneira de obter o seu trabalho incluíd
 ### JS
 
 - 2 espaços (sem tab)
+- Utilize sempre o inglês para nomear funções, variáveis e afins.
 - Utilize espaço antes da abertura de chaves
-- Não use [métodos de conveniência do alias do evento jQuery](https://github.com/jquery/jquery/blob/master/src/event/alias.js) (como `$ (). Focus ()`) . Fazemos isso para ser compatível com construções customizadas do jQuery onde o módulo de aliases de eventos foi excluído.
+- Não use [métodos de conveniência do jQuery](https://github.com/jquery/jquery/blob/master/src/event/alias.js) (como `$().focus ()`). O GainTime precisa ser compatível com o jQuery.
 
 ## Licença
 
