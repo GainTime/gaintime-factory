@@ -24,18 +24,18 @@ O [issue tracker](https://github.com/GainTime/gaintime-factory/issues) é o loca
 
 Nós utilizamos algumas labels para ajudar a identificar e organizar nossas issues. Veja o que elas representam:
 
-* help wanted - Issues em que é preciso ajuda para desenvolver/resolver
+* help-wanted - Issues em que é preciso ajuda para desenvolver/resolver
 * links  - Problemas com os nossos links e downloads
-* GainTime - Problema com o projeto em si ou com o nosso repositório
-* Feature - Pedido de novo recurso ou que um já existente seja modificado
-* Example - Problema com o exemplo utilizado na documentação
-* Docs - Problema com a documentação
-* js_bug - Problema com o nosso JavaScript
-* css_bug - Problema com o nosso CSS compilado ou com os arquivos SASS que o geraram
+* gaintime - Problema com o projeto em si ou com o nosso repositório
+* feature - Pedido de novo recurso ou que um já existente seja modificado
+* example - Problema com o exemplo utilizado na documentação
+* docs - Problema com a documentação
+* js-bug - Problema com o nosso JavaScript
+* css-bug - Problema com o nosso CSS compilado ou com os arquivos SASS que o geraram
 * duplicate - issue duplicada
-* in progress - Solicitação que está sendo implementada
+* in-progress - Solicitação que está sendo implementada
 * invalid - Relato que não diz respeito ao GainTime
-* Solved - Relato resolvido
+* solved - Relato resolvido
 * wontfix - Não será resolvido
 
 [Veja todas as labels](https://github.com/GainTime/gaintime-factory/labels)
