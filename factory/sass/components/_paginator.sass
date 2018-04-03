@@ -1,0 +1,24 @@
+.pagination
+  display: inline-flex
+  margin: 15px auto
+  list-style: none
+  padding: 0
+  & > *
+    border: 1px solid rgba(0,0,0,0.125)
+    margin: 0
+    margin-left: -1px
+    &:hover
+      background-color: #e6e6e6e6
+    &:first-child
+      border-top-left-radius: 3px
+      border-bottom-left-radius: 3px
+    &:last-child
+      border-top-right-radius: 3px
+      border-bottom-right-radius: 3px
+  & a
+    padding: 10px 15px
+    text-decoration: none
+    display: block
+    height: 100%
+    width: 100%
+    font-size: 1.2em
