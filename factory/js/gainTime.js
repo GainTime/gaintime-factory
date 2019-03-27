@@ -39,6 +39,8 @@ function makeDropdown(e) {
     (!!t.target.attributes["aria-expanded"] && (38 === t.keyCode || 40 === t.keyCode)) && openDropdown(e)
   }), e.addEventListener("keydown", function(t) {
     36 === t.keyCode && navigateHome(e)
+  }), e.addEventListener("keydown", function(t) {
+    35 === t.keyCode && navigateEnd(e)
   })
 }
 
@@ -69,6 +71,11 @@ function toogleDropdown(e) {
 
 function navigateHome(e) {
   e.getElementsByTagName("ul")[0].children[0].focus()
+}
+
+function navigateEnd(e) {
+  var t = e.getElementsByTagName("ul")[0]
+  t.children[t.children.length - 1].focus()
 }
 
 function closeDropdowns() {
