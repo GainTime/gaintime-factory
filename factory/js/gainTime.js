@@ -35,6 +35,8 @@ function makeDropdown(e) {
     13 === t.keyCode && (toogleDropdown(e)), 27 === t.keyCode && closeDropdowns()
   }), e.addEventListener("keydown", function(t) {
     (38 === t.keyCode || 40 === t.keyCode) && (t.preventDefault(), dropdownsNavKeys(e, t.keyCode))
+  }), e.addEventListener("keydown", function(t) {
+    (!!t.target.attributes["aria-expanded"] && (38 === t.keyCode || 40 === t.keyCode)) && openDropdown(e)
   })
 }
 
@@ -45,6 +47,13 @@ function dropdownsNavKeys(e, k) {
 
   if (s >= 0 && s < n.length)
   (n[s].firstChild.nodeName == "A")? n[s].firstChild.focus(): n[s].focus();
+}
+
+function openDropdown(e) {
+  var t = e.getElementsByTagName("ul")[0]
+  e.setAttribute("aria-expanded", "true")
+  t.style.display = "list-item"
+  t.children[0].focus()
 }
 
 function toogleDropdown(e) {
