@@ -31,7 +31,7 @@ function makeDropdown(e) {
     t.stopPropagation(), toogleDropdown(e)
   }), [].slice.call(e.getElementsByTagName("ul")[0].getElementsByTagName("li")).forEach(function(i) {
     i.setAttribute("tabindex", "-1"), i.setAttribute("role", "option")
-  }), e.addEventListener("keypress", function(t) {
+  }), e.addEventListener("keydown", function(t) {
     13 === t.keyCode && (toogleDropdown(e)), 27 === t.keyCode && closeDropdowns()
   }), e.addEventListener("keydown", function(t) {
     (38 === t.keyCode || 40 === t.keyCode) && (t.preventDefault(), dropdownsNavKeys(e, t.keyCode))
