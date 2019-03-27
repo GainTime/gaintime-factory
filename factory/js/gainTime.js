@@ -27,10 +27,10 @@ function closeMenus() {
 }
 
 function makeDropdown(e) {
-  e.setAttribute("role", "button"), e.setAttribute("tabindex", "0"), e.addEventListener("click", function(t) {
+  e.setAttribute("role", "button"), e.setAttribute("tabindex", "0"), e.setAttribute("aria-expanded", "false"), e.setAttribute("role", "listbox"), e.setAttribute("aria-haspopup", "listbox"), e.addEventListener("click", function(t) {
     t.stopPropagation(), toogleDropdown(e)
   }), [].slice.call(e.getElementsByTagName("ul")[0].getElementsByTagName("li")).forEach(function(i) {
-    i.setAttribute("tabindex", "-1")
+    i.setAttribute("tabindex", "-1"), i.setAttribute("role", "option")
   }), e.addEventListener("keypress", function(t) {
     13 === t.keyCode && (toogleDropdown(e)), 27 === t.keyCode && closeDropdowns()
   }), e.addEventListener("keydown", function(t) {
@@ -48,15 +48,19 @@ function dropdownsNavKeys(e, k) {
 }
 
 function toogleDropdown(e) {
-  var t = e.getElementsByTagName("ul")[0],
+  var t = e.getElementsByTagName("ul")[0]
+  t.setAttribute("role","listbox")
   o = !!t.style.display;
   closeDropdowns(), o ? t.style.removeProperty("display") : t.style.display = "list-item"
+  e.setAttribute("aria-expanded", !o)
   e.focus();
 }
 
 function closeDropdowns() {
   dropdowns.forEach(function(e) {
     e.getElementsByTagName("ul")[0].style.removeProperty("display")
+    e.setAttribute("aria-expanded", "false")
+    e.focus()
   })
 }
 
