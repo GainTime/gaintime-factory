@@ -27,14 +27,20 @@ function closeMenus() {
 }
 
 function makeDropdown(e) {
-  e.setAttribute("role", "button"), e.setAttribute("tabindex", "0"), e.addEventListener("click", function(t) {
+  e.setAttribute("role", "button"), e.setAttribute("tabindex", "0"), e.setAttribute("aria-expanded", "false"), e.setAttribute("role", "listbox"), e.setAttribute("aria-haspopup", "listbox"), e.addEventListener("click", function(t) {
     t.stopPropagation(), toogleDropdown(e)
   }), [].slice.call(e.getElementsByTagName("ul")[0].getElementsByTagName("li")).forEach(function(i) {
-    i.setAttribute("tabindex", "-1")
-  }), e.addEventListener("keypress", function(t) {
+    i.setAttribute("tabindex", "-1"), i.setAttribute("role", "option")
+  }), e.addEventListener("keydown", function(t) {
     13 === t.keyCode && (toogleDropdown(e)), 27 === t.keyCode && closeDropdowns()
   }), e.addEventListener("keydown", function(t) {
     (38 === t.keyCode || 40 === t.keyCode) && (t.preventDefault(), dropdownsNavKeys(e, t.keyCode))
+  }), e.addEventListener("keydown", function(t) {
+    (!!t.target.attributes["aria-expanded"] && (38 === t.keyCode || 40 === t.keyCode)) && openDropdown(e)
+  }), e.addEventListener("keydown", function(t) {
+    36 === t.keyCode && navigateHome(e)
+  }), e.addEventListener("keydown", function(t) {
+    35 === t.keyCode && navigateEnd(e)
   })
 }
 
@@ -47,16 +53,36 @@ function dropdownsNavKeys(e, k) {
   (n[s].firstChild.nodeName == "A")? n[s].firstChild.focus(): n[s].focus();
 }
 
+function openDropdown(e) {
+  var t = e.getElementsByTagName("ul")[0]
+  e.setAttribute("aria-expanded", "true")
+  t.style.display = "list-item"
+  t.children[0].focus()
+}
+
 function toogleDropdown(e) {
-  var t = e.getElementsByTagName("ul")[0],
+  var t = e.getElementsByTagName("ul")[0]
+  t.setAttribute("role","listbox")
   o = !!t.style.display;
   closeDropdowns(), o ? t.style.removeProperty("display") : t.style.display = "list-item"
+  e.setAttribute("aria-expanded", !o)
   e.focus();
+}
+
+function navigateHome(e) {
+  e.getElementsByTagName("ul")[0].children[0].focus()
+}
+
+function navigateEnd(e) {
+  var t = e.getElementsByTagName("ul")[0]
+  t.children[t.children.length - 1].focus()
 }
 
 function closeDropdowns() {
   dropdowns.forEach(function(e) {
     e.getElementsByTagName("ul")[0].style.removeProperty("display")
+    e.setAttribute("aria-expanded", "false")
+    e.focus()
   })
 }
 
