@@ -87,8 +87,9 @@ function closeDropdowns() {
 }
 
 function bar(e) {
+  e.setAttribute("role", "progressbar"),e.setAttribute("aria-valuenow", e.dataset.percentage),e.setAttribute("aria-valuemin", "0"),e.setAttribute("aria-valuemax", "100")
   var t = document.createElement("div");
-  t.setAttribute("class", "percentage " + e.dataset.color), t.setAttribute("style", "width: " + e.dataset.percentage);
+  t.setAttribute("class", "percentage " + e.dataset.color), t.setAttribute("style", "width: " + e.dataset.percentage + '%' );
   var o = document.createTextNode(e.dataset.text);
   if ("undefined" != o.data) {
     var n = document.createElement("span");
